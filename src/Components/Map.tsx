@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import icon from "leaflet/dist/images/marker-icon.png";
 import L, { LatLngExpression } from "leaflet";
