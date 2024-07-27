@@ -23,10 +23,11 @@ const pages = ['products', 'contact', 'about'];
 interface prop {
     ToggleTheme: () => void,
     Theme: PaletteMode,
+    isHome: boolean
 }
 
 export default function Navbar(props: prop) {
-    const { ToggleTheme, Theme} = props
+    const { ToggleTheme, Theme, isHome } = props
 
     // const { userDbData } = useContext(MyContext);
     // const [open, setOpen] = useState(false);
@@ -89,16 +90,21 @@ export default function Navbar(props: prop) {
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
+    const menuDarkmode = () => {
+        ToggleTheme()
+        setAnchorElNav(null);
+    };
+
 
     return (
-        <AppBar position='static'>
+        <AppBar sx={{ backgroundColor: isHome? 'transparent':''}} className={isHome? "blured":""} position={isHome? 'absolute':'static' }>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <LogoDevIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
-                        className="noLink"
+                        className="noLink outlined-text"
                         component="a"
                         href="/"
                         sx={{
@@ -120,10 +126,11 @@ export default function Navbar(props: prop) {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
+                            
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -152,16 +159,16 @@ export default function Navbar(props: prop) {
                                 </MenuItem>
                             ))}
 
-                            <MenuItem onClick={handleCloseNavMenu}>
+                            <MenuItem onClick={menuDarkmode}>
                                 <Typography textAlign="center">Darkmode</Typography>
                             </MenuItem>
                         </Menu>
                     </Box>
-                    <LogoDevIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
-                        className="noLink"
+                        className="noLink outlined-text"
                         component="a"
                         href="#app-bar-with-responsive-menu"
                         sx={{
@@ -182,7 +189,7 @@ export default function Navbar(props: prop) {
                             <Button
                                 key={page}
                                 component={Link}
-                                className='noLink'
+                                className='noLink outlined-text'
                                 to={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -199,7 +206,7 @@ export default function Navbar(props: prop) {
                         </SignedIn>
                         <SignedOut>
                             <Button color='inherit' component={Link}
-                                className='noLink' to='/sign-in' startIcon={<LoginIcon />} size='large' >Sign in</Button>
+                                className='noLink outlined-text' to='/sign-in' startIcon={<LoginIcon />} size='large' >Sign in</Button>
 
                         </SignedOut>
                         {/* <Button color='inherit' onClick={ToggleTheme} startIcon={Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />} size='large' >Darkmode</Button> */}
