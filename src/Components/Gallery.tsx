@@ -76,7 +76,7 @@ export default function Gallery() {
     const isSm = useMediaQuery(theme.breakpoints.down("sm"));
     const isMd = useMediaQuery(theme.breakpoints.down("md"));
     const isLg = useMediaQuery(theme.breakpoints.down("lg"));
-    let cols = 4; // default
+    let cols = 3; // default
 
     if (isXs) {
         cols = 1;
@@ -85,7 +85,7 @@ export default function Gallery() {
     } else if (isMd) {
         cols = 3;
     } else if (isLg) {
-        cols = 4;
+        cols = 3;
     }
     return (
         <div className="container galleryMT">

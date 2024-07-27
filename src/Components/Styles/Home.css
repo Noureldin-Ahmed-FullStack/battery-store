@@ -169,13 +169,13 @@
 .pyramdis {
   width: 100%;
   z-index: 6;
-  bottom: 0;
+  bottom: 100;
   left: 0;
 }
 .pyramdis2{
   width: 100%;
   z-index: 6;
-  bottom: 110;
+  bottom: 0;
   left: 0;
 }
 
@@ -185,7 +185,7 @@
 
 .myDark {
   color: #DEE8D9;
-  background-color: #181818;
+  background-color: #171717;
 }
 .myLight {
   color: #181818;

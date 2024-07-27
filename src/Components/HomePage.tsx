@@ -6,6 +6,8 @@ import Map from './Map';
 import { InputAdornment, TextField } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Gallery from './Gallery';
+import FancyDiv from './FancyDiv';
+import MyCarousel from './MyCarousel';
 export default function HomePage() {
   const { Theme } = useMyContext();
   return (
@@ -30,7 +32,7 @@ export default function HomePage() {
         {/* <img draggable={false} src='https://ssniper.sirv.com/Images/other%20projects/mechanic.jpg' alt="Background Image" className="bgImage" /> */}
 
       </div>
-      <div className='ubuntu-regular secondaryItem position-relative'>
+      <div className='ubuntu-regular mt-5 position-relative'>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-7 text-start">
@@ -41,22 +43,34 @@ export default function HomePage() {
               <img draggable={false} className='w-100 rounded-3' src="https://ssniper.sirv.com/Images/other%20projects/battery3.jpg" loading='lazy' alt="car battery" />
             </div>
           </div>
+        </div></div>
+      <FancyDiv Theme={Theme}>
+        <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start ubuntu-regular`}>
+
+          <div className="container py-5">
+            <h2 className='py-2'>About us</h2>
+            <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis tempore praesentium quod doloremque ducimus dignissimos ut dolorem cumque, fuga, deleniti accusantium! Architecto assumenda, aliquid quam, maiores error recusandae similique deleniti tempore quae saepe adipisci eos excepturi sapiente dicta nostrum.</p>
+            <p className='m-0 p-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eligendi quisquam. Nam, soluta. Voluptate ea possimus, illo sed fuga ex omnis eius delectus doloremque mollitia itaque qui. Exercitationem, temporibus at nesciunt repudiandae culpa excepturi eius pariatur necessitatibus similique perspiciatis error rem. Excepturi a nesciunt qui non magni! Aliquam, obcaecati sapiente?</p>
+          </div>
         </div>
-        <img draggable={false} className='position-absolute pyramdis' src={`https://ssniper.sirv.com/Images/other%20projects/pyramids${Theme == 'light' ? '1' : '3'}.png`} alt="" />
-      </div>
-      <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start py-5 ubuntu-regular`}>
-        <div className="container">
-          <h2 className='py-2'>About us</h2>
-          <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis tempore praesentium quod doloremque ducimus dignissimos ut dolorem cumque, fuga, deleniti accusantium! Architecto assumenda, aliquid quam, maiores error recusandae similique deleniti tempore quae saepe adipisci eos excepturi sapiente dicta nostrum.</p>
-          <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eligendi quisquam. Nam, soluta. Voluptate ea possimus, illo sed fuga ex omnis eius delectus doloremque mollitia itaque qui. Exercitationem, temporibus at nesciunt repudiandae culpa excepturi eius pariatur necessitatibus similique perspiciatis error rem. Excepturi a nesciunt qui non magni! Aliquam, obcaecati sapiente?</p>
+      </FancyDiv>
+      <section className='w-100'>
+        <MyCarousel />
+      </section>
+
+      <FancyDiv Theme={Theme}>
+        <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start py-5 ubuntu-regular`}>
+          <div className="container">
+            <Gallery />
+          </div>
         </div>
-      </div>
-      <div className={` text-start ubuntu-regular  position-relative`}>
-        <img draggable={false} className='position-absolute pyramdis2' src={`https://ssniper.sirv.com/Images/other%20projects/pyramids${Theme == 'light' ? '2' : '4'}.png`} alt="" />
-        <div className="container d-flex justify-content-center secondaryItem pb-4">
+      </FancyDiv>
+      <div className="py-5 text-start ubuntu-regular  position-relative">
+        <div className="container d-flex justify-content-center">
           <div className="row justify-content-center w-100 ">
             <div className="col-md-7"><Map /></div>
             <div className="col-md-5">
+              <h2 className='text-center'>Contact Us Today</h2>
               <form>
                 <div className="row">
                   <div className="col-6"><TextField placeholder='Name' InputProps={{
@@ -73,7 +87,7 @@ export default function HomePage() {
                       </InputAdornment>
                     ),
                   }} fullWidth required type='email' label="Email" variant="outlined" /></div>
-                  <div className="col-12 mt-2"><TextField fullWidth required label="Message" variant="outlined" multiline rows={5} /></div>
+                  <div className="col-12 mt-2"><TextField fullWidth required label="Message" variant="outlined" multiline rows={3} /></div>
 
                   <div className="wrapper">
                     <a className='wrapperAnchor w-100 mt-4'><span>Submit</span></a>
@@ -84,11 +98,6 @@ export default function HomePage() {
           </div>
         </div>
 
-      </div>
-      <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start py-5 ubuntu-regular`}>
-        <div className="container">
-          <Gallery />
-        </div>
       </div>
     </>
 

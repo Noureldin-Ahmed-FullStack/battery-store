@@ -34,6 +34,13 @@ export default function MyContextProvider(props: props) {
   const [Theme, setTheme] = useState<PaletteMode>('light')
   const ToggleTheme = () => {
     Theme == 'dark' ? setTheme('light') : setTheme('dark')
+    if (Theme == 'dark') {
+      setTheme('light')
+      localStorage.setItem('BatteryStoreTheme','light')
+    }else{
+      setTheme('dark')
+      localStorage.setItem('BatteryStoreTheme','dark')
+    }
   }
 
   const fetchFirebaseUser = async (ClerkUser: any) => {
@@ -96,6 +103,10 @@ export default function MyContextProvider(props: props) {
 
   }
   useEffect(() => {
+    const LocalTheme = localStorage.getItem('BatteryStoreTheme')
+    if (LocalTheme) {
+      setTheme(LocalTheme as PaletteMode)
+    }
     if (isLoaded && isSignedIn && user) {
       console.log(user);
 
