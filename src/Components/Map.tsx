@@ -28,7 +28,7 @@ export default function Map() {
 };
 
   return (
-    <div className='z-0 position-relative'>
+    <div className='z-0 position-relative rounded-4 overflow-hidden'>
       <MapContainer center={position as LatLngExpression} zoom={8} style={{ height: '300px', width: '100%' }}>
         <TileLayer
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

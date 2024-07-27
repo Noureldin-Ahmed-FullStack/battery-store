@@ -15,7 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
 // import { Divider,  List, ListItem, ListItemButton, ListItemIcon, ListItemText, PaletteMode, SwipeableDrawer } from '@mui/material';
-import { PaletteMode } from '@mui/material';
+import { PaletteMode, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
@@ -46,7 +46,7 @@ export default function Navbar(props: prop) {
 
 
     return (
-        <AppBar sx={{ backgroundColor: isHome? 'transparent':''}} className={isHome? "blured":""} position={isHome? 'absolute':'static' }>
+        <AppBar sx={{ backgroundColor: isHome ? 'transparent' : '' }} className={isHome ? "blured" : ""} position={isHome ? 'absolute' : 'static'}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -75,11 +75,11 @@ export default function Navbar(props: prop) {
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
-                            
+
                             onClick={handleOpenNavMenu}
                             color="inherit"
                         >
-                            <MenuIcon/>
+                            <MenuIcon />
                         </IconButton>
                         <Menu
                             id="menu-appbar"
@@ -150,12 +150,16 @@ export default function Navbar(props: prop) {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip followCursor title={'Toggle Theme'}>
+                                <Button color='inherit' onClick={ToggleTheme} className='noLink outlined-text' size='large' >{Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}</Button>
+                            </Tooltip>
                         <SignedIn>
                             <UserButton />
                         </SignedIn>
                         <SignedOut>
-                            <Button color='inherit' component={Link}
-                                className='noLink outlined-text' to='/sign-in' startIcon={<LoginIcon />} size='large' >Sign in</Button>
+                            <Tooltip followCursor title={'sign-in'}>
+                                <Button color='inherit' component={Link} className='noLink outlined-text' to='/sign-in' size='large' ><LoginIcon /></Button>
+                            </Tooltip>
 
                         </SignedOut>
                         {/* <Button color='inherit' onClick={ToggleTheme} startIcon={Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />} size='large' >Darkmode</Button> */}

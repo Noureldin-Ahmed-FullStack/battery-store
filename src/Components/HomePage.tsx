@@ -70,7 +70,7 @@ export default function HomePage() {
           <div className="row justify-content-center w-100 ">
             <div className="col-md-7"><Map /></div>
             <div className="col-md-5">
-              <h2 className='text-center'>Contact Us Today</h2>
+              <h2 className='text-center mt-2'>Contact Us Today</h2>
               <form>
                 <div className="row">
                   <div className="col-6"><TextField placeholder='Name' InputProps={{

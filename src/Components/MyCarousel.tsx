@@ -13,7 +13,7 @@ export default function MyCarousel() {
         autoplaySpeed:1500
     };
     return (
-        <div className='w-100 text-start container'>
+        <div className='w-100 text-start container my-3'>
             <Slider {...settings}>
                 <div>
                     <h3>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia, nisi provident, magnam deleniti et molestias at modi porro labore minus suscipit? Odit suscipit, aut fuga temporibus reprehenderit quasi hic voluptates dicta quis est sint cum nulla esse ut dolore culpa molestiae saepe expedita ex error totam atque sunt. Repudiandae, quibusdam.</h3>

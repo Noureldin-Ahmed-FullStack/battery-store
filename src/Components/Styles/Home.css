@@ -182,7 +182,12 @@
 .secondaryItem {
   padding: 9rem 0;
 }
-
+.TopImage{
+  margin-top: -4px; /* Adjust as needed */
+}
+.bottomImage{
+  margin-top: -4px; /* Adjust as needed */
+}
 .myDark {
   color: #DEE8D9;
   background-color: #171717;
