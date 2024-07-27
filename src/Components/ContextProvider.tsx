@@ -3,8 +3,10 @@ import { createContext, useEffect, useState } from 'react';
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
 import { db } from './FireBaseSetup';
 import { UserDbData, Products } from './types';
+import { PaletteMode } from '@mui/material';
 
 // Create a context
+
 interface MyContextProps {
   // darkMode: boolean;
   // setDarkmode: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,9 +15,12 @@ interface MyContextProps {
   Products: Products[] | [];
   setProducts: React.Dispatch<React.SetStateAction<Products[] | []>>;
   fetchProducts: (ClerkUser: any) => Promise<void>;
+  Theme: PaletteMode;
+  setTheme: React.Dispatch<React.SetStateAction<PaletteMode>>;
+  ToggleTheme: () => void
 }
 
-export const MyContext = createContext<Partial<MyContextProps>>({});
+export const MyContext = createContext<MyContextProps | null>(null);
 interface props {
   children: React.ReactNode
 }
@@ -25,6 +30,12 @@ export default function MyContextProvider(props: props) {
   const [userDbData, setUserDbData] = useState<UserDbData | null>(null);
   const [Products, setProducts] = useState<Products[]>([]);
   const { isLoaded, isSignedIn, user } = useUser();
+
+  const [Theme, setTheme] = useState<PaletteMode>('light')
+  const ToggleTheme = () => {
+    Theme == 'dark' ? setTheme('light') : setTheme('dark')
+  }
+
   const fetchFirebaseUser = async (ClerkUser: any) => {
 
     try {
@@ -33,7 +44,7 @@ export default function MyContextProvider(props: props) {
 
       const UserData = firebaseUserData.data() as UserDbData | undefined;
       if (UserData) {
-        setUserDbData({...UserData,id:firebaseUserData.id})
+        setUserDbData({ ...UserData, id: firebaseUserData.id })
         console.log(UserData);
 
         // const clerkUser: any = user
@@ -51,7 +62,7 @@ export default function MyContextProvider(props: props) {
         if (UserData) {
           setUserDbData(UserData)
           console.log(UserData);
-          
+
         }
       }
     } catch (error) {
@@ -65,7 +76,7 @@ export default function MyContextProvider(props: props) {
       const q = query(UserCollectionRef, where("user", "==", ClerkUser.id)); // Assuming userId property in Pets collection
       const data = await getDocs(q);
 
-      
+
       const fetchedProducts: Products[] = [];
       data.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
@@ -87,7 +98,7 @@ export default function MyContextProvider(props: props) {
   useEffect(() => {
     if (isLoaded && isSignedIn && user) {
       console.log(user);
-      
+
       const clerkUser: any = user
       fetchFirebaseUser(clerkUser)
     }
@@ -102,6 +113,10 @@ export default function MyContextProvider(props: props) {
     Products,
     setProducts,
     fetchProducts,
+    Theme,
+
+    setTheme,
+    ToggleTheme,
   };
 
   return (

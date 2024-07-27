@@ -1,4 +1,4 @@
-import AppBar, { AppBarProps } from '@mui/material/AppBar';
+import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -22,64 +22,13 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 const pages = ['products', 'contact', 'about'];
 interface prop {
     ToggleTheme: () => void,
-    Theme: PaletteMode,
+    Theme: PaletteMode | undefined,
     isHome: boolean
 }
 
 export default function Navbar(props: prop) {
     const { ToggleTheme, Theme, isHome } = props
 
-    // const { userDbData } = useContext(MyContext);
-    // const [open, setOpen] = useState(false);
-
-    // const toggleDrawer = (newOpen: boolean) => () => {
-    //     setOpen(newOpen);
-    // };
-    // const DrawerList = (
-    //     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-    //         <List>
-    //             <Tooltip followCursor title="ChangeTheme">
-    //                 <ListItem onClick={ToggleTheme} disablePadding>
-    //                     <ListItemButton>
-    //                         <ListItemIcon>
-    //                             {Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}
-    //                         </ListItemIcon>
-    //                         <ListItemText primary={'Darkmode'} />
-    //                     </ListItemButton>
-    //                 </ListItem>
-    //             </Tooltip>
-    //         </List>
-    //         <Divider />
-
-    //         <List>
-    //             <Typography
-    //                 className='ms-3'
-    //             >Settings</Typography>
-    //             <ListItem >
-    //                 <SignedIn>
-    //                     <ListItemButton>
-    //                         <ListItemIcon>
-    //                             <UserButton />
-    //                         </ListItemIcon>
-    //                         <ListItemText primary={userDbData?.userName} />
-    //                     </ListItemButton>
-    //                 </SignedIn>
-    //                 <SignedOut>
-    //                     <Button
-    //                         component={Link}
-    //                         fullWidth
-    //                         to={'/sign-in'}>
-    //                         <ListItemIcon>
-    //                             <LoginIcon />
-    //                         </ListItemIcon>
-    //                         <ListItemText primary={"Login"} />
-    //                     </Button>
-    //                 </SignedOut>
-
-    //             </ListItem>
-    //         </List>
-    //     </Box>
-    // );
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
