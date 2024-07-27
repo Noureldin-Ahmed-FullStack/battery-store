@@ -50,6 +50,8 @@ export default function MyContextProvider(props: props) {
         const UserData = firebaseUserData.data() as UserDbData | undefined;
         if (UserData) {
           setUserDbData(UserData)
+          console.log(UserData);
+          
         }
       }
     } catch (error) {

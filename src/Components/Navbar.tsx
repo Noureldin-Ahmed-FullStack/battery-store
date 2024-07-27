@@ -1,4 +1,4 @@
-import AppBar from '@mui/material/AppBar';
+import AppBar, { AppBarProps } from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -15,71 +15,70 @@ import MenuItem from '@mui/material/MenuItem';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
 // import { Divider,  List, ListItem, ListItemButton, ListItemIcon, ListItemText, PaletteMode, SwipeableDrawer } from '@mui/material';
-import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, PaletteMode, SwipeableDrawer, Tooltip } from '@mui/material';
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
-import { MyContext } from './ContextProvider';
-import React, { useContext, useState } from 'react';
+import { PaletteMode } from '@mui/material';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 const pages = ['products', 'contact', 'about'];
 interface prop {
     ToggleTheme: () => void,
-    Theme: PaletteMode
+    Theme: PaletteMode,
 }
 
 export default function Navbar(props: prop) {
-    const { ToggleTheme, Theme } = props
+    const { ToggleTheme, Theme} = props
 
-    const { userDbData } = useContext(MyContext);
-    const [open, setOpen] = useState(false);
+    // const { userDbData } = useContext(MyContext);
+    // const [open, setOpen] = useState(false);
 
-    const toggleDrawer = (newOpen: boolean) => () => {
-        setOpen(newOpen);
-    };
-    const DrawerList = (
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-            <List>
-                <Tooltip followCursor title="ChangeTheme">
-                    <ListItem onClick={ToggleTheme} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}
-                            </ListItemIcon>
-                            <ListItemText primary={'Darkmode'} />
-                        </ListItemButton>
-                    </ListItem>
-                </Tooltip>
-            </List>
-            <Divider />
+    // const toggleDrawer = (newOpen: boolean) => () => {
+    //     setOpen(newOpen);
+    // };
+    // const DrawerList = (
+    //     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    //         <List>
+    //             <Tooltip followCursor title="ChangeTheme">
+    //                 <ListItem onClick={ToggleTheme} disablePadding>
+    //                     <ListItemButton>
+    //                         <ListItemIcon>
+    //                             {Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}
+    //                         </ListItemIcon>
+    //                         <ListItemText primary={'Darkmode'} />
+    //                     </ListItemButton>
+    //                 </ListItem>
+    //             </Tooltip>
+    //         </List>
+    //         <Divider />
 
-            <List>
-                <Typography
-                    className='ms-3'
-                >Settings</Typography>
-                <ListItem >
-                    <SignedIn>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                <UserButton />
-                            </ListItemIcon>
-                            <ListItemText primary={userDbData?.userName} />
-                        </ListItemButton>
-                    </SignedIn>
-                    <SignedOut>
-                        <Button
-                            component={Link}
-                            fullWidth
-                            to={'/sign-in'}>
-                            <ListItemIcon>
-                                <LoginIcon />
-                            </ListItemIcon>
-                            <ListItemText primary={"Login"} />
-                        </Button>
-                    </SignedOut>
+    //         <List>
+    //             <Typography
+    //                 className='ms-3'
+    //             >Settings</Typography>
+    //             <ListItem >
+    //                 <SignedIn>
+    //                     <ListItemButton>
+    //                         <ListItemIcon>
+    //                             <UserButton />
+    //                         </ListItemIcon>
+    //                         <ListItemText primary={userDbData?.userName} />
+    //                     </ListItemButton>
+    //                 </SignedIn>
+    //                 <SignedOut>
+    //                     <Button
+    //                         component={Link}
+    //                         fullWidth
+    //                         to={'/sign-in'}>
+    //                         <ListItemIcon>
+    //                             <LoginIcon />
+    //                         </ListItemIcon>
+    //                         <ListItemText primary={"Login"} />
+    //                     </Button>
+    //                 </SignedOut>
 
-                </ListItem>
-            </List>
-        </Box>
-    );
+    //             </ListItem>
+    //         </List>
+    //     </Box>
+    // );
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -92,7 +91,7 @@ export default function Navbar(props: prop) {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position='static'>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LogoDevIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -147,10 +146,15 @@ export default function Navbar(props: prop) {
                             {pages.map((page) => (
                                 <MenuItem key={page}
                                     component={Link}
+                                    className='noLink'
                                     to={page} onClick={handleCloseNavMenu}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
+
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">Darkmode</Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <LogoDevIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -178,6 +182,7 @@ export default function Navbar(props: prop) {
                             <Button
                                 key={page}
                                 component={Link}
+                                className='noLink'
                                 to={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -185,14 +190,23 @@ export default function Navbar(props: prop) {
                                 {page}
                             </Button>
                         ))}
+                        <Button color='inherit' onClick={ToggleTheme} sx={{ my: 2, color: 'white' }} startIcon={Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}>Darkmode</Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
+                        <SignedIn>
+                            <UserButton />
+                        </SignedIn>
+                        <SignedOut>
+                            <Button color='inherit' component={Link}
+                                className='noLink' to='/sign-in' startIcon={<LoginIcon />} size='large' >Sign in</Button>
+
+                        </SignedOut>
                         {/* <Button color='inherit' onClick={ToggleTheme} startIcon={Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />} size='large' >Darkmode</Button> */}
-                        <SwipeableDrawer disableSwipeToOpen={false} onOpen={toggleDrawer(true)} open={open} anchor='right' onClose={toggleDrawer(false)}>
+                        {/* <SwipeableDrawer disableSwipeToOpen={false} onOpen={toggleDrawer(true)} open={open} anchor='right' onClose={toggleDrawer(false)}>
                             {DrawerList}
-                        </SwipeableDrawer>
-                        <Button color='inherit' sx={{ padding: '0' }} onClick={toggleDrawer(true)} size='large' ><MenuIcon fontSize='large' /></Button>
+                        </SwipeableDrawer> */}
+                        {/* <Button color='inherit' sx={{ padding: '0' }} onClick={toggleDrawer(true)} size='large' ><MenuIcon fontSize='large' /></Button> */}
 
                         {/* {Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />} */}
                     </Box>
