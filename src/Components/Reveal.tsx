@@ -13,31 +13,27 @@ export default function Reveal(props: props) {
     const isInView = useInView(ref, { once: true })
 
     const getSlideVariants = (direction: 'top' | 'left' | 'right' | 'bottom') => {
+
         switch (direction) {
             case 'top':
                 return {
-                    hidden: { top: 0 },
-                    visible: { top: '100%' },
+                    hidden: { opacity: 0, y: 40 },
+                    visible: { opacity: 1, y: 0 }
                 }
             case 'left':
                 return {
-                    hidden: { left: 0 },
-                    visible: { left: '100%' },
+                    hidden: { opacity: 0, x: 40 },
+                    visible: { opacity: 1, x: 0 }
                 }
             case 'right':
                 return {
-                    hidden: { right: 0 },
-                    visible: { right: '100%' },
+                    hidden: { opacity: 0, x: -40 },
+                    visible: { opacity: 1, x: 0 }
                 }
             case 'bottom':
                 return {
-                    hidden: { bottom: 0 },
-                    visible: { bottom: '100%' },
-                }
-            default:
-                return {
-                    hidden: { top: 0 },
-                    visible: { top: '100%' },
+                    hidden: { opacity: 0, y: -40 },
+                    visible: { opacity: 1, y: 0 }
                 }
         }
     }
@@ -50,10 +46,7 @@ export default function Reveal(props: props) {
 
     return (
         <div ref={ref} className={`${(props.width === 'full') ? 'w-100' : 'fitContent'} position-relative`}>
-            <motion.div variants={{
-                hidden: { opacity: 0, y: 40 },
-                visible: { opacity: 1, y: 0 }
-            }}
+            <motion.div variants={getSlideVariants(props.direction)}
                 initial="hidden"
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0.25 }}
@@ -61,7 +54,11 @@ export default function Reveal(props: props) {
                 {props.children}
             </motion.div>
             <motion.div
-                variants={getSlideVariants(props.direction)}
+                // variants={getSlideVariants(props.direction)}
+                variants={{
+                    hidden: { top: 0 },
+                    visible: { top: '100%' },
+                }}
                 initial="hidden"
                 animate={slideControls}
                 transition={{ duration: 0.5, ease: "easeIn" }}

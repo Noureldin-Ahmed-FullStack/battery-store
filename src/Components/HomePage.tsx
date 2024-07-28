@@ -21,7 +21,7 @@ export default function HomePage() {
             </Reveal>
           </div>
           <p>Lorem ipsum dolom voluptate quod a alias dolorum, nobis architecto excepturi aliquid</p>
-       
+
           <div className="wrapper">
             <a className='wrapperAnchor'><span>SHOP NOW!</span></a>
           </div>
@@ -37,7 +37,9 @@ export default function HomePage() {
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eos nesciunt distinctio assumenda temporibus explicabo ea laboriosam quibusdam doloribus sunt cum dignissimos itaque, enim, animi doloremque in architecto! At nobis magni quasi voluptatum culpa, delectus iusto distinctio cum possimus fuga nam itaque sint facilis soluta! Expedita sed omnis facilis magnam.</p>
             </div>
             <div className="col-md-5">
-              <img draggable={false} className='w-100 rounded-3' src="https://ssniper.sirv.com/Images/other%20projects/battery3.jpg" loading='lazy' alt="car battery" />
+              <Reveal direction={'left'} width='Full'>
+                <img draggable={false} className='w-100 rounded-3' src="https://ssniper.sirv.com/Images/other%20projects/battery3.jpg" loading='lazy' alt="car battery" />
+              </Reveal>
             </div>
           </div>
         </div></div>
@@ -53,12 +55,12 @@ export default function HomePage() {
 
         </div>
       </FancyDiv>
-      
+
       <Reveal direction={'top'} width='full'>
-          <section className={`w-100`}>
-            <MyCarousel />
-          </section>
-          </Reveal>
+        <section className={`w-100`}>
+          <MyCarousel />
+        </section>
+      </Reveal>
 
 
       <FancyDiv Theme={Theme}>
