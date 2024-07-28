@@ -150,9 +150,9 @@ export default function Navbar(props: prop) {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip followCursor title={'Toggle Theme'}>
+                            {/* <Tooltip followCursor title={'Toggle Theme'}>
                                 <Button color='inherit' onClick={ToggleTheme} className='noLink outlined-text' size='large' >{Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}</Button>
-                            </Tooltip>
+                            </Tooltip> */}
                         <SignedIn>
                             <UserButton />
                         </SignedIn>
