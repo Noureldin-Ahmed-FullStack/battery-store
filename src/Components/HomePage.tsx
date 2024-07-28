@@ -8,6 +8,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import Gallery from './Gallery';
 import FancyDiv from './FancyDiv';
 import MyCarousel from './MyCarousel';
+import Reveal from './Reveal';
 export default function HomePage() {
   const { Theme } = useMyContext();
   return (
@@ -15,21 +16,17 @@ export default function HomePage() {
       <div className="bgImageContainer ubuntu-regular">
         <div className='overlayText'>
           <div className="w-50">
-
-            <h1 style={{ fontSize: '6vw' }}>Find your car Battery</h1>
+            <Reveal direction={'top'} width='Full'>
+              <h1 style={{ fontSize: '6vw' }}>Find your car Battery</h1>
+            </Reveal>
           </div>
           <p>Lorem ipsum dolom voluptate quod a alias dolorum, nobis architecto excepturi aliquid</p>
-          {/* <button className="btn-flip p-0 w-100 my-3" style={{ background: 'transparent', border: '0px' }} data-back="Submit now!" data-front="Submit" type='submit'>Shop now!</button> */}
-
-          {/* <div className="btn btn-one">
-            <span>Shop now!</span>
-          </div> */}
+       
           <div className="wrapper">
             <a className='wrapperAnchor'><span>SHOP NOW!</span></a>
           </div>
 
         </div>
-        {/* <img draggable={false} src='https://ssniper.sirv.com/Images/other%20projects/mechanic.jpg' alt="Background Image" className="bgImage" /> */}
 
       </div>
       <div className='ubuntu-regular mt-5 position-relative'>
@@ -46,17 +43,23 @@ export default function HomePage() {
         </div></div>
       <FancyDiv Theme={Theme}>
         <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start ubuntu-regular`}>
+          <Reveal direction={'top'} width='full'>
+            <div className='container py-5'>
+              <h2 className='py-2'>About us</h2>
+              <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis tempore praesentium quod doloremque ducimus dignissimos ut dolorem cumque, fuga, deleniti accusantium! Architecto assumenda, aliquid quam, maiores error recusandae similique deleniti tempore quae saepe adipisci eos excepturi sapiente dicta nostrum.</p>
+              <p className='m-0 p-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eligendi quisquam. Nam, soluta. Voluptate ea possimus, illo sed fuga ex omnis eius delectus doloremque mollitia itaque qui. Exercitationem, temporibus at nesciunt repudiandae culpa excepturi eius pariatur necessitatibus similique perspiciatis error rem. Excepturi a nesciunt qui non magni! Aliquam, obcaecati sapiente?</p>
+            </div>
+          </Reveal>
 
-          <div className="container py-5">
-            <h2 className='py-2'>About us</h2>
-            <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis tempore praesentium quod doloremque ducimus dignissimos ut dolorem cumque, fuga, deleniti accusantium! Architecto assumenda, aliquid quam, maiores error recusandae similique deleniti tempore quae saepe adipisci eos excepturi sapiente dicta nostrum.</p>
-            <p className='m-0 p-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eligendi quisquam. Nam, soluta. Voluptate ea possimus, illo sed fuga ex omnis eius delectus doloremque mollitia itaque qui. Exercitationem, temporibus at nesciunt repudiandae culpa excepturi eius pariatur necessitatibus similique perspiciatis error rem. Excepturi a nesciunt qui non magni! Aliquam, obcaecati sapiente?</p>
-          </div>
         </div>
       </FancyDiv>
-      <section className='w-100'>
-        <MyCarousel />
-      </section>
+      
+      <Reveal direction={'top'} width='full'>
+          <section className={`w-100`}>
+            <MyCarousel />
+          </section>
+          </Reveal>
+
 
       <FancyDiv Theme={Theme}>
         <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start py-5 ubuntu-regular`}>
