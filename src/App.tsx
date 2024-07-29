@@ -13,9 +13,9 @@ function App() {
   const isHome = location.pathname === '/' || location.pathname === '/battery-store';
   const theme = createTheme({
     palette: {
-      mode: Theme
-    },
-  });
+      mode: Theme,
+    }
+})
   return (
     <ThemeProvider theme={theme}>
       <div className={`${Theme == 'dark' ? 'bg-dark text-light' : 'lightGreenBG text-dark'} w-100 d-flex flex-column flex-grow-1`}>

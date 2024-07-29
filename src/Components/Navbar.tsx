@@ -46,7 +46,7 @@ export default function Navbar(props: prop) {
 
 
     return (
-        <AppBar sx={{ backgroundColor: isHome ? 'transparent' : '' }} className={isHome ? "blured" : ""} position={isHome ? 'absolute' : 'static'}>
+        <AppBar sx={{backgroundColor: isHome ? 'transparent' : '' ,backgroundImage: (!isHome && Theme== 'light')? "linear-gradient(-90deg,#905689, #5e50ad)":""}} className={isHome ? "blured" : "LightThemeNav"} position={isHome ? 'absolute' : 'static'}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
