@@ -1,0 +1,51 @@
+{
+    "data": [
+        {
+            "images": [
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680403397482-1.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680403397482-2.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680403397483-3.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680403397485-4.jpeg"
+            ],
+            "name": "Woman Shawl",
+            "description": "Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen",
+            "quantity": 225,
+            "price": 170,
+            "brand": "DeFacto",
+            "type": "DeFacto",
+            "discount": 20
+        },
+        {
+            "images": [
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402838330-1.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402838331-3.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402838332-4.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402838331-2.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402838332-5.jpeg"
+            ],
+            "name": "Woman Bordeaux",
+            "description": "Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen",
+            "quantity": 225,
+            "price": 170,
+            "brand": "Alto",
+            "type": "Alto",
+            "discount": 0
+        },
+        {
+            "images": [
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402563676-2.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402563676-3.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402563677-4.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402563675-1.jpeg",
+                "https://ecommerce.routemisr.com/Route-Academy-products/1680402563677-5.jpeg"
+            ],
+            "name": "Orca",
+            "description": "Material\tPolyester Blend\nColour Name\tMulticolour\nDepartment\tWomen",
+            "quantity": 225,
+            "price": 170,
+            "brand": "Garry",
+            "type": "Garry",
+            "discount": 50
+        }
+    ]
+}

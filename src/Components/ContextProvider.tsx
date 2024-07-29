@@ -31,7 +31,10 @@ export default function MyContextProvider(props: props) {
   const [Products, setProducts] = useState<Products[]>([]);
   const { isLoaded, isSignedIn, user } = useUser();
 
-  const [Theme, setTheme] = useState<PaletteMode>('light')
+  const [Theme, setTheme] = useState(() => {
+    // Get the initial theme from local storage
+    return localStorage.getItem('BatteryStoreTheme') as PaletteMode;
+  });
   const ToggleTheme = () => {
     Theme == 'dark' ? setTheme('light') : setTheme('dark')
     if (Theme == 'dark') {
@@ -52,6 +55,7 @@ export default function MyContextProvider(props: props) {
       const UserData = firebaseUserData.data() as UserDbData | undefined;
       if (UserData) {
         setUserDbData({ ...UserData, id: firebaseUserData.id })
+        sessionStorage.setItem('userSessionData',JSON.stringify(UserData))
         console.log(UserData);
 
         // const clerkUser: any = user
@@ -62,57 +66,62 @@ export default function MyContextProvider(props: props) {
         await setDoc(FireBaseUserDocRef, {
           id: ClerkUser.id,
           userName: ClerkUser?.fullName,
-          email: ClerkUser.primaryEmailAddress?.emailAddress
+          email: ClerkUser.primaryEmailAddress?.emailAddress,
+          role:'user'
         })
         const firebaseUserData = await getDoc(FireBaseUserDocRef);
         const UserData = firebaseUserData.data() as UserDbData | undefined;
         if (UserData) {
           setUserDbData(UserData)
+          sessionStorage.setItem('userSessionData',JSON.stringify(UserData))
           console.log(UserData);
 
         }
+        
       }
     } catch (error) {
       console.error("Error fetching Users data:", error);
     }
 
   };
-  const fetchProducts = async (ClerkUser: any) => {
-    try {
-      const UserCollectionRef = collection(db, 'Products');
-      const q = query(UserCollectionRef, where("user", "==", ClerkUser.id)); // Assuming userId property in Pets collection
-      const data = await getDocs(q);
-
-
-      const fetchedProducts: Products[] = [];
-      data.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        if (doc.data()) {
-          const data = doc.data() as Products
-          data.id = doc.id
-          fetchedProducts.push(data)
-        }
-      });
-      if (fetchedProducts) {
-        setProducts(fetchedProducts)
-      }
-
+  const fetchProducts = async () => {
+    const localProductsData = sessionStorage.getItem('productsData')
+    if (!localProductsData) {
+       try {
+      const querySnapshot = await getDocs(collection(db, "Products"));
+      const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProducts(itemsList as Products[])
+      sessionStorage.setItem('productsData',JSON.stringify(itemsList))
+      console.log({Fetched:itemsList});
     } catch (error) {
-      console.error(error)
+      console.log(error);
     }
+    }else{
+      console.log({local:JSON.parse(localProductsData)});
+      setProducts(JSON.parse(localProductsData) as Products[])
+    }
+   
 
   }
   useEffect(() => {
-    const LocalTheme = localStorage.getItem('BatteryStoreTheme')
-    if (LocalTheme) {
-      setTheme(LocalTheme as PaletteMode)
-    }
+    // const LocalTheme = localStorage.getItem('BatteryStoreTheme')
+    // if (LocalTheme) {
+    //   setTheme(LocalTheme as PaletteMode)
+    // }
     if (isLoaded && isSignedIn && user) {
       console.log(user);
 
       const clerkUser: any = user
+      const userSessionData = sessionStorage.getItem('userSessionData')
+      if (!userSessionData) {
       fetchFirebaseUser(clerkUser)
+      }else{
+        console.log({local: JSON.parse(userSessionData)});
+        
+        setUserDbData(JSON.parse(userSessionData))
+      }
     }
+    fetchProducts()
   }, [user])
 
   // const [darkMode, setDarkmode] = useState(true);

@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       <div className="bgImageContainer ubuntu-regular">
-        <div className='overlayText'>
+        <div className='overlayText container'>
           <div className="w-50">
             <Reveal direction={'top'} width='Full'>
               <h1 style={{ fontSize: '6vw' }}>Find your car Battery</h1>

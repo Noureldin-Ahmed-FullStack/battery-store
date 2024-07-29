@@ -7,13 +7,14 @@ import CenteredPage from './Components/CenteredPage.tsx';
 import { ClerkProvider, SignIn, SignUp } from '@clerk/clerk-react';
 import MyContextProvider from './Components/ContextProvider.tsx';
 import HomePage from './Components/HomePage.tsx';
+import Products from './Components/Products.tsx';
 const router = createBrowserRouter([
   {
     element: <App />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/battery-store", element: <HomePage /> },
-      { path: "/products", element:<h1>test</h1>},
+      { path: "/products", element:<CenteredPage><Products /></CenteredPage>},
       { path: "/sign-in", element: <CenteredPage><SignUp routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },
       { path: "/sign-up", element: <CenteredPage><SignIn routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },
       { path: "*", element: <CenteredPage><h1>Wrong Route</h1></CenteredPage> },
