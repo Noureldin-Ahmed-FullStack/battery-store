@@ -1,6 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
 import { createContext, useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc} from 'firebase/firestore';
 import { db } from './FireBaseSetup';
 import { UserDbData, Products } from './types';
 import { PaletteMode } from '@mui/material';

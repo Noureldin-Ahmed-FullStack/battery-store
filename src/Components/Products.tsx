@@ -1,21 +1,19 @@
-import { addDoc, collection } from "firebase/firestore";
-import data from "../myData.json";
-import { db } from "./FireBaseSetup";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+// import { addDoc, collection } from "firebase/firestore";
+// import data from "../myData.json";
+// import { db } from "./FireBaseSetup";
 // import MovieList from "./MovieList";
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, FormControlLabel, Paper, Switch, Tooltip, Typography } from "@mui/material";
+import {Card, CardActionArea, CardActions, CardContent, CardMedia, FormControlLabel, Paper, Switch, Tooltip, Typography } from "@mui/material";
 import { useMyContext } from './useMyContext';
 
 export default function Products() {
   const { Products } = useMyContext();
-  const addItems = async () => {
-    console.log(data.data);
-    for (let i = 0; i < data.data.length; i++) {
-      await addDoc(collection(db, "Products"), data.data[i]);
+  // const addItems = async () => {
+  //   console.log(data.data);
+  //   for (let i = 0; i < data.data.length; i++) {
+  //     await addDoc(collection(db, "Products"), data.data[i]);
 
-    }
-  }
+  //   }
+  // }
   return (
     <div className="w-100 d-flex flex-column align-items-center">
       <div className="container">
