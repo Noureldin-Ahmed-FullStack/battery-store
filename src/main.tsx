@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/battery-store", element: <HomePage /> },
-      { path: "/products", element:<CenteredPage><Products /></CenteredPage>},
+      { path: "/products", element:<Products />},
       { path: "/products/:productId", element: <CenteredPage><ProductDetails /></CenteredPage> },
       { path: "/sign-in", element: <CenteredPage><SignUp routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },
       { path: "/sign-up", element: <CenteredPage><SignIn routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },

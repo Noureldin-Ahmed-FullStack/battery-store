@@ -28,7 +28,9 @@ html {
   display: flex;
   flex-direction: column;
 }
-
+html {
+  overflow-y: scroll;
+}
 body {
   margin: 0;
   display: flex;
