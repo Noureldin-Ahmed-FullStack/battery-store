@@ -9,6 +9,7 @@ import MyContextProvider from './Components/ContextProvider.tsx';
 import HomePage from './Components/HomePage.tsx';
 import Products from './Components/Products.tsx';
 import ProductDetails from './Components/ProductDetails.tsx';
+import NotFoundPage from './Components/NotFoundPage.tsx';
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       { path: "/products/:productId", element: <ProductDetails /> },
       { path: "/sign-in", element: <CenteredPage><SignUp routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },
       { path: "/sign-up", element: <CenteredPage><SignIn routing='hash' forceRedirectUrl={'/battery-store'} /></CenteredPage> },
-      { path: "*", element: <CenteredPage><h1>Wrong Route</h1></CenteredPage> },
+      { path: "*", element: <CenteredPage><NotFoundPage /></CenteredPage> },
     ]
   }
 ])
