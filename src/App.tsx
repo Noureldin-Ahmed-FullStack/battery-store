@@ -18,7 +18,7 @@ function App() {
 })
   return (
     <ThemeProvider theme={theme}>
-      <div className={`${Theme == 'dark' ? 'bg-dark text-light' : 'lightGreenBG text-dark'} w-100 d-flex flex-column flex-grow-1`}>
+      <div style={{ transition: 'background-color 0.5s ease-in-out, color 0.5s ease-in-out' }} className={`${Theme == 'dark' ? 'bg-dark text-light' : 'lightGreenBG text-dark'} w-100 d-flex flex-column flex-grow-1`}>
         <Navbar isHome={isHome} ToggleTheme={ToggleTheme} Theme={Theme} />
         {/* <MovieList Theme={Theme}/> */}
         <Outlet />

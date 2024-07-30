@@ -1,6 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
 import { createContext, useEffect, useState } from 'react';
-import { collection, doc, getDoc, getDocs, setDoc} from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from './FireBaseSetup';
 import { UserDbData, Products } from './types';
 import { PaletteMode } from '@mui/material';
@@ -27,8 +27,12 @@ interface props {
 
 
 export default function MyContextProvider(props: props) {
+  const getInitialProducts = (): Products[] => {
+    const storedProducts = sessionStorage.getItem('productsData');
+    return storedProducts ? JSON.parse(storedProducts) : [];
+  };
   const [userDbData, setUserDbData] = useState<UserDbData | null>(null);
-  const [Products, setProducts] = useState<Products[]>([]);
+  const [Products, setProducts] = useState<Products[]>((getInitialProducts));
   const { isLoaded, isSignedIn, user } = useUser();
 
   const [Theme, setTheme] = useState(() => {
@@ -39,10 +43,10 @@ export default function MyContextProvider(props: props) {
     Theme == 'dark' ? setTheme('light') : setTheme('dark')
     if (Theme == 'dark') {
       setTheme('light')
-      localStorage.setItem('BatteryStoreTheme','light')
-    }else{
+      localStorage.setItem('BatteryStoreTheme', 'light')
+    } else {
       setTheme('dark')
-      localStorage.setItem('BatteryStoreTheme','dark')
+      localStorage.setItem('BatteryStoreTheme', 'dark')
     }
   }
 
@@ -55,7 +59,7 @@ export default function MyContextProvider(props: props) {
       const UserData = firebaseUserData.data() as UserDbData | undefined;
       if (UserData) {
         setUserDbData({ ...UserData, id: firebaseUserData.id })
-        sessionStorage.setItem('userSessionData',JSON.stringify(UserData))
+        sessionStorage.setItem('userSessionData', JSON.stringify(UserData))
         console.log(UserData);
 
         // const clerkUser: any = user
@@ -67,17 +71,17 @@ export default function MyContextProvider(props: props) {
           id: ClerkUser.id,
           userName: ClerkUser?.fullName,
           email: ClerkUser.primaryEmailAddress?.emailAddress,
-          role:'user'
+          role: 'user'
         })
         const firebaseUserData = await getDoc(FireBaseUserDocRef);
         const UserData = firebaseUserData.data() as UserDbData | undefined;
         if (UserData) {
           setUserDbData(UserData)
-          sessionStorage.setItem('userSessionData',JSON.stringify(UserData))
+          sessionStorage.setItem('userSessionData', JSON.stringify(UserData))
           console.log(UserData);
 
         }
-        
+
       }
     } catch (error) {
       console.error("Error fetching Users data:", error);
@@ -87,20 +91,20 @@ export default function MyContextProvider(props: props) {
   const fetchProducts = async () => {
     const localProductsData = sessionStorage.getItem('productsData')
     if (!localProductsData) {
-       try {
-      const querySnapshot = await getDocs(collection(db, "Products"));
-      const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setProducts(itemsList as Products[])
-      sessionStorage.setItem('productsData',JSON.stringify(itemsList))
-      console.log({Fetched:itemsList});
-    } catch (error) {
-      console.log(error);
-    }
-    }else{
-      console.log({local:JSON.parse(localProductsData)});
+      try {
+        const querySnapshot = await getDocs(collection(db, "Products"));
+        const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProducts(itemsList as Products[])
+        sessionStorage.setItem('productsData', JSON.stringify(itemsList))
+        console.log({ Fetched: itemsList });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log({ local: JSON.parse(localProductsData) });
       setProducts(JSON.parse(localProductsData) as Products[])
     }
-   
+
 
   }
   useEffect(() => {
@@ -114,10 +118,10 @@ export default function MyContextProvider(props: props) {
       const clerkUser: any = user
       const userSessionData = sessionStorage.getItem('userSessionData')
       if (!userSessionData) {
-      fetchFirebaseUser(clerkUser)
-      }else{
-        console.log({local: JSON.parse(userSessionData)});
-        
+        fetchFirebaseUser(clerkUser)
+      } else {
+        console.log({ local: JSON.parse(userSessionData) });
+
         setUserDbData(JSON.parse(userSessionData))
       }
     }
