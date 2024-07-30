@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+IT+Moderna:wght@100..400&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://ssniper.sirv.com/Images/other%20projects/HankenGrotesk-Regular.ttf');
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Playwrite+IT+Moderna:wght@100..400&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playwrite+IT+Moderna:wght@100..400&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 /* .bgImage{
     width: 100%;
@@ -252,4 +253,31 @@
   color: transparent;
   /* line-height: 1; */
   /* vertical-align: middle; */
+}
+.exo-2 {
+  font-family: "Exo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.exo-2-bold {
+  font-family: "Exo 2", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
+}
+.productDetailsImage{
+  object-fit: cover;
+  max-height: 400px;
+}
+@media screen and (max-width: 600px) {
+  .productDetailsImage{
+  max-height: 250px;
+  }
+}
+.top-10{
+  top: 10%;
+}
+.slick-dots li button::before {
+  color: #905689 !important;
 }

@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import LoginIcon from '@mui/icons-material/Login';
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+import ElectricCarIcon from '@mui/icons-material/ElectricCar';
 import Menu from '@mui/material/Menu';
 // import TuneIcon from '@mui/icons-material/Tune';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -49,7 +49,7 @@ export default function Navbar(props: prop) {
         <AppBar sx={{backgroundColor: isHome ? 'transparent' : '' ,backgroundImage: (!isHome && Theme== 'light')? "linear-gradient(-90deg,#905689, #5e50ad)":""}} className={isHome ? "blured" : "LightThemeNav"} position={isHome ? 'absolute' : 'static'}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
                         variant="h6"
                         noWrap
@@ -113,7 +113,7 @@ export default function Navbar(props: prop) {
                             </MenuItem>
                         </Menu>
                     </Box>
-                    <LogoDevIcon className='outlined-text' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+                    <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
                     <Typography
                         variant="h5"
                         noWrap
