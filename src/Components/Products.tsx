@@ -2,7 +2,7 @@
 // import data from "../myData.json";
 // import { db } from "./FireBaseSetup";
 // import MovieList from "./MovieList";
-import { Button, Card, CardActions, CardContent, CardMedia, Checkbox, FormControlLabel, MenuItem, Paper, Select, SelectChangeEvent, Slider, Tooltip, Typography } from "@mui/material";
+import { Card, CardActions, CardContent, CardMedia, Checkbox, FormControlLabel, MenuItem, Paper, Select, SelectChangeEvent, Slider, Tooltip, Typography } from "@mui/material";
 import { useMyContext } from './useMyContext';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useNavigate } from "react-router-dom";
