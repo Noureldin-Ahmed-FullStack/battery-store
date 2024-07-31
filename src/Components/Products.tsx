@@ -15,7 +15,7 @@ export default function Products() {
   const [Sort, setSort] = useState('asc');
   const { Products, userDbData } = useMyContext();
   const [FilteredProducts, setFilteredProducts] = useState(Products);
-  const [PriceRange, setPriceRange] = useState<number[]>([0, 16000]);
+  const [PriceRange, setPriceRange] = useState<number[]>([0, 25000]);
   const [onSaleCheck, setOnSaleCheck] = useState(false);
   const handleSaleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOnSaleCheck(event.target.checked);
@@ -69,9 +69,9 @@ export default function Products() {
       )
     }
     if (Sort === 'asc') {
-      filtered.sort((a, b) => a.price - b.price);
+      filtered.sort((a, b) => (a.price - (a.price * a.discount / 100)) - (b.price - (b.price * b.discount / 100)));
     } else {
-      filtered.sort((a, b) => b.price - a.price);
+      filtered.sort((a, b) => (b.price - (b.price * b.discount / 100)) - (a.price - (a.price * a.discount / 100)));
     }
     setFilteredProducts(filtered);
   }, [Category, PriceRange, Sort, onSaleCheck,Products])
@@ -118,7 +118,7 @@ export default function Products() {
                 <p className="mb-0">Price</p>
                 <Slider
                   color="secondary"
-                  max={16000}
+                  max={25000}
                   step={100}
                   getAriaLabel={() => 'Minimum distance'}
                   value={PriceRange}

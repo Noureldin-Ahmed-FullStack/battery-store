@@ -153,7 +153,7 @@ export default function AddProduct() {
                                     placeholder='7250'
                                     label="price"
                                     type="number"
-                                    inputProps={{ min: 0 }}
+                                    inputProps={{ min: 0 ,max: 25000}}
                                     fullWidth
                                     variant="filled"
                                 />
@@ -167,7 +167,7 @@ export default function AddProduct() {
                                     placeholder='30'
                                     label="discount"
                                     type="number"
-                                    inputProps={{ min: 0 }}
+                                    inputProps={{ min: 0 ,max: 100}}
                                     fullWidth
                                     variant="filled"
                                 />
