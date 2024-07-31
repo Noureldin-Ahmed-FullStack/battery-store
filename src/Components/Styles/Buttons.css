@@ -159,8 +159,57 @@
     width: 100%;
   }
 
+/*  */
+.SendButton{
+  border: none;
+  text-shadow:none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 50px;
+  line-height: 40px;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #d1d1d1;
+  border-radius: 0.5rem;
+  background-color: rgb(41, 41, 41);
+  /* border: 2px solid #333; */
+  letter-spacing: 2px;
+  text-align: center;
+  position: relative;
+  transition: all .35s;
+}
 
+.SendButton span{
+  position: relative;
+  z-index: 2;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
 
+.SendButton:after{
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #d1d1d1;
+  border-radius: 0.4rem;
+  transition: all .35s;
+}
+
+.SendButton:hover{
+  color:  rgb(37, 37, 37);
+}
+
+.SendButton:hover:after{
+  width: 100%;
+}
+/*  */
   @media screen and (max-width: 600px) {
 
     /* Your CSS styles for screens smaller than 600px go here */

@@ -13,12 +13,13 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 export default function Map() {
-  const [position, setPosition] = useState([30, 31]);
+  const [position, _setPosition] = useState([30, 31]);
   const LocationMarker = () => {
     useMapEvents({
-        click(e) {
-            setPosition([e.latlng.lat, e.latlng.lng]);
-            console.log(`Clicked coordinates: ${e.latlng.lat}, ${e.latlng.lng}`);
+        click(_e) {
+            // setPosition([e.latlng.lat, e.latlng.lng]);
+            window.open('https://maps.google.com/maps?q=Mena+palace', "_blank");
+            // console.log(`Clicked coordinates: ${e.latlng.lat}, ${e.latlng.lng}`);
         },
     });
     
@@ -29,7 +30,7 @@ export default function Map() {
 
   return (
     <div className='z-0 position-relative rounded-4 overflow-hidden'>
-      <MapContainer center={position as LatLngExpression} zoom={8} style={{ height: '300px', width: '100%' }}>
+      <MapContainer center={position as LatLngExpression} zoom={13} style={{ height: '300px', width: '100%' }}>
         <TileLayer
           // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"

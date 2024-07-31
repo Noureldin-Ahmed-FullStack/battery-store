@@ -42,7 +42,7 @@ export default function AddProduct() {
             price: formJson.price,
             quantity: formJson.quantity,
             discount: formJson.discount,
-            images: downloadURLs.length == 0? ['https://ssniper.sirv.com/Images/unknown.jpg'] : downloadURLs
+            images: downloadURLs.length == 0? ['https://ssniper.sirv.com/Images/other%20projects/question.jpg'] : downloadURLs
         }
         console.log(data);
         await addDoc(collection(db, "Products"), data);

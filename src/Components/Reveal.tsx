@@ -45,9 +45,10 @@ export default function Reveal(props: props) {
     }, [isInView, mainControls, slideControls])
 
     return (
-        <div ref={ref} className={`${(props.width === 'full') ? 'w-100' : 'fitContent'} position-relative`}>
+        <div ref={ref} className={`${(props.width === 'full') ? 'w-100' : 'fitContent'} h-100 position-relative`}>
             <motion.div variants={getSlideVariants(props.direction)}
                 initial="hidden"
+                className='h-100'
                 animate={mainControls}
                 transition={{ duration: 0.5, delay: 0.25 }}
             >

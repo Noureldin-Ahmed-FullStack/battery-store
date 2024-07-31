@@ -245,8 +245,9 @@
   line-height: 1;
   vertical-align: middle;
 }
-.price{
-  background-image: linear-gradient(90deg,#905689, #5e50ad);
+
+.price {
+  background-image: linear-gradient(90deg, #905689, #5e50ad);
   background-size: 40vw;
   background-clip: text;
   -webkit-background-clip: text;
@@ -254,33 +255,88 @@
   /* line-height: 1; */
   /* vertical-align: middle; */
 }
+
 .exo-2 {
   font-family: "Exo 2", sans-serif !important;
   font-optical-sizing: auto;
   font-weight: 500 !important;
   font-style: normal;
 }
+
 .exo-2-bold {
   font-family: "Exo 2", sans-serif !important;
   font-optical-sizing: auto;
   font-weight: 700 !important;
   font-style: italic;
 }
-.productDetailsImage{
+
+.productDetailsImage {
   object-fit: cover;
   max-height: 400px;
 }
-@media screen and (max-width: 600px) {
-  .productDetailsImage{
-  max-height: 250px;
+.heart{
+  transform-origin: center;
+  animation: heartbeat 2s infinite;
+}
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  20%, 60% {
+    transform: scale(1.08);
+  }
+  40%, 80% {
+    transform: scale(1);
   }
 }
-.top-10{
+@media screen and (max-width: 600px) {
+  .productDetailsImage {
+    max-height: 250px;
+  }
+}
+
+.top-10 {
   top: 10%;
 }
+
 .slick-dots li button::before {
   color: #905689 !important;
 }
-.rounded-L-0{
+
+.rounded-L-0 {
   border-radius: 0rem 0.4rem 0.4rem 0rem;
+}
+
+.ContactIcon {
+  font-size: 25px;
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.ContactIcon-light {
+  background-color: #9056894d;
+  color: #5e50ad94;
+}
+
+.ContactIcon-dark {
+  background-color: #3636368f;
+  color: #f790f180;
+}
+
+.squareAspectRatio {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+
+.show-md{
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .disapear-md {
+    display: none;
+  }
+
+  .show-md {
+    display: block;
+  }
 }
