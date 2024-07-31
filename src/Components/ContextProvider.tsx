@@ -34,11 +34,12 @@ export default function MyContextProvider(props: props) {
   const [userDbData, setUserDbData] = useState<UserDbData | null>(null);
   const [Products, setProducts] = useState<Products[]>((getInitialProducts));
   const { isLoaded, isSignedIn, user } = useUser();
-
-  const [Theme, setTheme] = useState(() => {
-    // Get the initial theme from local storage
-    return localStorage.getItem('BatteryStoreTheme') as PaletteMode;
-  });
+  const getInitialTheme = (): PaletteMode => {
+    // Get the theme from local storage or default to 'light'
+    const savedTheme = localStorage.getItem('BatteryStoreTheme');
+    return (savedTheme as PaletteMode) || 'light';
+  };
+  const [Theme, setTheme] = useState<PaletteMode>(getInitialTheme);
   const ToggleTheme = () => {
     Theme == 'dark' ? setTheme('light') : setTheme('dark')
     if (Theme == 'dark') {
