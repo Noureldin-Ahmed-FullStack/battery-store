@@ -7,6 +7,7 @@ import { useMyContext } from './useMyContext';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import AddProduct from "./AddProduct";
 
 
 export default function Products() {
@@ -73,7 +74,7 @@ export default function Products() {
       filtered.sort((a, b) => b.price - a.price);
     }
     setFilteredProducts(filtered);
-  }, [Category, PriceRange, Sort, onSaleCheck])
+  }, [Category, PriceRange, Sort, onSaleCheck,Products])
   function valuetext(value: number) {
     return `${value}°C`;
   }
@@ -145,12 +146,12 @@ export default function Products() {
               </Select>
             </div>
           </div>
-          {userDbData?.role == 'admin' ? <Button variant="outlined" className="w-100" color="secondary">Add Product</Button> : <></>}
+          {userDbData?.role == 'admin' ? <AddProduct /> : <></>}
         </Paper>
         <div className="row gy-3">
           {FilteredProducts?.map((product => (
             <div className="col-6 col-sm-4 col-md-3 col-lg-3 " key={product.id}>
-              <Card>
+              <Card className="h-100">
                 <CardActionArea onClick={() => goToProduct(product.id)}>
                   <CardMedia
                     className="movie-item pointer position-relative"
@@ -158,7 +159,6 @@ export default function Products() {
                     image={product.images[0]}
                     title={product.name}
                   />
-
                   {product.discount ? (
                     <div className='bg-danger text-light px-2 position-absolute top-10 rounded-L-0'>{product.discount}% off</div>
                   ) : (<></>)}

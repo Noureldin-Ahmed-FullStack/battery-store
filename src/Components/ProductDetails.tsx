@@ -8,19 +8,22 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 export default function ProductDetails() {
+    const { Products } = useMyContext();
+
+    const { productId } = useParams();
+    const item = Products.find(product => product.id === productId);
+
+  const hasMultipleImages = item && item.images.length > 1;
     var settings = {
         dots: true,
-        infinite: true,
+        infinite: hasMultipleImages,
         speed: 500,
         arrows: false,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: hasMultipleImages,
         autoplaySpeed: 1500
     };
-    const { Products } = useMyContext();
-    const { productId } = useParams();
-    const item = Products.find(product => product.id === productId);
     if (item) {
         const discountedPrice = item.price - (item.price * item.discount / 100)
         const location = useLocation();

@@ -14,7 +14,7 @@ interface MyContextProps {
   setUserDbData: React.Dispatch<React.SetStateAction<UserDbData | null>>;
   Products: Products[] | [];
   setProducts: React.Dispatch<React.SetStateAction<Products[] | []>>;
-  fetchProducts: (ClerkUser: any) => Promise<void>;
+  fetchProducts: () => Promise<void>;
   Theme: PaletteMode;
   setTheme: React.Dispatch<React.SetStateAction<PaletteMode>>;
   ToggleTheme: () => void
@@ -89,21 +89,16 @@ export default function MyContextProvider(props: props) {
 
   };
   const fetchProducts = async () => {
-    const localProductsData = sessionStorage.getItem('productsData')
-    if (!localProductsData) {
-      try {
-        const querySnapshot = await getDocs(collection(db, "Products"));
-        const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        setProducts(itemsList as Products[])
-        sessionStorage.setItem('productsData', JSON.stringify(itemsList))
-        console.log({ Fetched: itemsList });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log({ local: JSON.parse(localProductsData) });
-      setProducts(JSON.parse(localProductsData) as Products[])
+    try {
+      const querySnapshot = await getDocs(collection(db, "Products"));
+      const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setProducts(itemsList as Products[])
+      sessionStorage.setItem('productsData', JSON.stringify(itemsList))
+      console.log({ Fetched: itemsList });
+    } catch (error) {
+      console.log(error);
     }
+
 
 
   }
@@ -125,7 +120,13 @@ export default function MyContextProvider(props: props) {
         setUserDbData(JSON.parse(userSessionData))
       }
     }
-    fetchProducts()
+    const localProductsData = sessionStorage.getItem('productsData')
+    if (!localProductsData) {
+      fetchProducts()
+    } else {
+      console.log({ local: JSON.parse(localProductsData) });
+      setProducts(JSON.parse(localProductsData) as Products[])
+    }
   }, [user])
 
   // const [darkMode, setDarkmode] = useState(true);
