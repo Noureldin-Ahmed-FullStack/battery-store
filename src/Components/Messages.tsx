@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import { useMyContext } from "./useMyContext";
 import CenteredPage from "./CenteredPage";
 import NotFoundPage from "./NotFoundPage";
-import { ClipLoader, GridLoader } from "react-spinners";
+import { GridLoader } from "react-spinners";
 interface Messages {
     id: string
     name: string,
