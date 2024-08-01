@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore";
 
 export interface UserDbData {
     id: string;
@@ -16,4 +17,11 @@ export interface Products {
     discount: number;
     quantity: number;
     brand: string;
+}
+export interface Messages {
+    id?: string
+    name: string,
+    phone: string,
+    message: string,
+    createdAt: Timestamp
 }

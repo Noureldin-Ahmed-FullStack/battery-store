@@ -9,9 +9,11 @@ import Gallery from './Gallery';
 import FancyDiv from './FancyDiv';
 import MyCarousel from './MyCarousel';
 import Reveal from './Reveal';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { db } from './FireBaseSetup';
 import { ReactElement } from 'react';
+import { Messages } from './types';
+import { toast } from 'react-toastify';
 interface contactCardProps {
   icon: React.ReactNode
   Header: string
@@ -23,6 +25,7 @@ interface IconnedLinkProps {
   Header: string
   href: string
 }
+
 function ContactCard(props: contactCardProps) {
   const { Header, icon, paragraph, href } = props
   return (
@@ -51,17 +54,43 @@ function IconnedLink(props: IconnedLinkProps) {
 export default function HomePage() {
   const SubmitContact = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
     const formData = new FormData(event.currentTarget);
     const formJson = Object.fromEntries((formData as any).entries());
-    const data = {
+    const data: Messages = {
       name: formJson.name,
       phone: formJson.phone,
       message: formJson.message,
-      createdAt: serverTimestamp()
+      createdAt: serverTimestamp() as Timestamp
     }
     console.log(data);
-    await addDoc(collection(db, "messages"), data);
+    try {
+      await addDoc(collection(db, "messages"), data);
+      toast.success("Message Submitted!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
 
+    form.reset();
   }
   const { Theme } = useMyContext();
   return (

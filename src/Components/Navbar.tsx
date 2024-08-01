@@ -19,7 +19,8 @@ import { PaletteMode, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
-const pages = ['products', 'contact', 'about'];
+import { useMyContext } from './useMyContext';
+const pages = ['products', 'about'];
 interface prop {
     ToggleTheme: () => void,
     Theme: PaletteMode | undefined,
@@ -28,6 +29,7 @@ interface prop {
 
 export default function Navbar(props: prop) {
     const { ToggleTheme, Theme, isHome } = props
+    const { userDbData } = useMyContext();
 
     const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
@@ -46,7 +48,7 @@ export default function Navbar(props: prop) {
 
 
     return (
-        <AppBar sx={{backgroundColor: isHome ? 'transparent' : '' ,backgroundImage: (!isHome && Theme== 'light')? "linear-gradient(-90deg,#905689, #5e50ad)":""}} className={isHome ? "blured" : "LightThemeNav"} position={isHome ? 'absolute' : 'static'}>
+        <AppBar sx={{ backgroundColor: isHome ? 'transparent' : '', backgroundImage: (!isHome && Theme == 'light') ? "linear-gradient(-90deg,#905689, #5e50ad)" : "" }} className={isHome ? "blured" : "LightThemeNav"} position={isHome ? 'absolute' : 'static'}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -108,6 +110,12 @@ export default function Navbar(props: prop) {
                                 </MenuItem>
                             ))}
 
+                            {userDbData?.role == 'admin' && <MenuItem
+                                component={Link}
+                                className='noLink'
+                                to={'messages'} onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">Messages</Typography>
+                            </MenuItem>}
                             <MenuItem onClick={menuDarkmode}>
                                 <Typography textAlign="center">Darkmode</Typography>
                             </MenuItem>
@@ -146,11 +154,20 @@ export default function Navbar(props: prop) {
                                 {page}
                             </Button>
                         ))}
+                        {userDbData?.role == 'admin' && <Button
+                            component={Link}
+                            className='noLink outlined-text'
+                            to={'messages'}
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            messages
+                        </Button>}
                         <Button color='inherit' onClick={ToggleTheme} sx={{ my: 2, color: 'white' }} startIcon={Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}>Darkmode</Button>
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-                            {/* <Tooltip followCursor title={'Toggle Theme'}>
+                        {/* <Tooltip followCursor title={'Toggle Theme'}>
                                 <Button color='inherit' onClick={ToggleTheme} className='noLink outlined-text' size='large' >{Theme == 'dark' ? <Brightness6OutlinedIcon /> : <Brightness6Icon />}</Button>
                             </Tooltip> */}
                         <SignedIn>
