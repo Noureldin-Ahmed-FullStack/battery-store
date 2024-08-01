@@ -11,6 +11,9 @@ import { Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { toast } from "react-toastify";
+import { useMyContext } from "./useMyContext";
+import CenteredPage from "./CenteredPage";
+import NotFoundPage from "./NotFoundPage";
 interface Messages {
     id: string
     name: string,
@@ -21,7 +24,7 @@ interface Messages {
 export default function Messages() {
     const [MessageArray, setMessageArray] = useState<Messages[]>([])
     const [expanded, setExpanded] = useState<string | false>(false);
-  
+    const { userDbData } = useMyContext()
     const handleChange =
         (panel: string) => (_event: React.SyntheticEvent, isExpanded: boolean) => {
             setExpanded(isExpanded ? panel : false);
@@ -64,43 +67,47 @@ export default function Messages() {
             getMessages()
         } else {
             console.log(JSON.parse(messages));
-            
+
             setMessageArray(JSON.parse(messages))
         }
     }, [])
+    if (userDbData?.role == 'admin') {
+        return (
+            <div className="mt-3">
+                {MessageArray?.map((item, index) => (
+                    <Accordion key={item.id} expanded={expanded === `${index}panel1`} onChange={handleChange(`${index}panel1`)}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1bh-content"
+                            id="panel1bh-header"
+                        >
+                            <Typography component={'div'} className="d-flex justify-content-center" sx={{ width: '33%', flexShrink: 0, textTransform: 'capitalize' }}>
+                                <div className="bg-secondary p-1 w-75 rounded-2 text-bold">
+                                    {item.name}
+                                </div>
+                            </Typography>
+                            <Typography className="w-100 d-flex justify-content-between align-items-center" sx={{ color: 'text.secondary' }}>{item.phone} </Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <Typography component={'div'} sx={{ textAlign: 'start' }}>
+                                {item.message}
 
-    return (
-        <div className="mt-3">
-            {MessageArray?.map((item, index) => (
-                <Accordion key={item.id} expanded={expanded === `${index}panel1`} onChange={handleChange(`${index}panel1`)}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1bh-content"
-                        id="panel1bh-header"
-                    >
-                        <Typography component={'div'} className="d-flex justify-content-center" sx={{ width: '33%', flexShrink: 0, textTransform: 'capitalize' }}>
-                            <div className="bg-secondary p-1 w-75 rounded-2 text-bold">
-                                {item.name}
-                            </div>
-                        </Typography>
-                        <Typography className="w-100 d-flex justify-content-between align-items-center" sx={{ color: 'text.secondary' }}>{item.phone} </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <Typography component={'div'} sx={{ textAlign: 'start' }}>
-                            {item.message}
+                                <div className="d-flex justify-content-end">
+                                    <div>
+                                        <Button component={'a'} target="_blank" href={`tel:${item.phone}`} className="mx-1" color="info" variant="outlined"><CallIcon /></Button>
+                                        <Button component={'a'} target="_blank" href={`https://wa.me/${item.phone}`} className="mx-1" color="success" variant="outlined"><WhatsAppIcon /></Button>
+                                        <Button onClick={() => DeleteMessage(item.id)} className="mx-1" color="error" variant="outlined"><DeleteIcon /></Button>
+                                    </div>
+                                </div>
 
-                            <div className="d-flex justify-content-end">
-                               <div>
-                               <Button component={'a'} target="_blank" href={`tel:${item.phone}`} className="mx-1" color="info" variant="outlined"><CallIcon /></Button>
-                                <Button component={'a'} target="_blank" href={`https://wa.me/${item.phone}`} className="mx-1" color="success" variant="outlined"><WhatsAppIcon /></Button>
-                                <Button onClick={() => DeleteMessage(item.id)} className="mx-1" color="error" variant="outlined"><DeleteIcon /></Button>
-                               </div>
-                            </div>
+                            </Typography>
+                        </AccordionDetails>
+                    </Accordion>
+                ))}
+            </div>
+        )
+    } else {
+        return <CenteredPage><NotFoundPage /></CenteredPage>
+    }
 
-                        </Typography>
-                    </AccordionDetails>
-                </Accordion>
-            ))}
-        </div>
-    )
 }
