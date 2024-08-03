@@ -6,11 +6,11 @@ import { useLocation, useParams } from 'react-router-dom';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import DeleteIcon from '@mui/icons-material/Delete';
+// import DeleteIcon from '@mui/icons-material/Delete';
 import "slick-carousel/slick/slick-theme.css";
 import EditProduct from './EditProduct';
-import { doc } from 'firebase/firestore';
-import { db } from './FireBaseSetup';
+// import { doc } from 'firebase/firestore';
+// import { db } from './FireBaseSetup';
 import DeleteProduct from './DeleteProduct';
 export default function ProductDetails() {
     const { Products, userDbData } = useMyContext();
@@ -29,9 +29,9 @@ export default function ProductDetails() {
         autoplay: hasMultipleImages,
         autoplaySpeed: 1500
     };
-    const DeleteItem = (productId: string) => {
-        const docRef = doc(db, "Products", productId);
-    }
+    // const DeleteItem = (productId: string) => {
+    //     const docRef = doc(db, "Products", productId);
+    // }
     if (item) {
         const discountedPrice = item.price - (item.price * item.discount / 100)
         const location = useLocation();
