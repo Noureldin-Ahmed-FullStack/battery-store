@@ -2,8 +2,8 @@ import './Styles/Home.css'
 import './Styles/Buttons.css'
 import { useMyContext } from './useMyContext';
 import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import Map from './Map';
-import { InputAdornment, Paper, TextField, Tooltip } from '@mui/material';
+// import Map from './Map';
+import { InputAdornment, Paper, TextField, Tooltip, Typography } from '@mui/material';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Gallery from './Gallery';
 import FancyDiv from './FancyDiv';
@@ -14,6 +14,7 @@ import { db } from './FireBaseSetup';
 import { ReactElement } from 'react';
 import { Messages } from './types';
 import { toast } from 'react-toastify';
+import GoogleMap from './GoogleMap';
 interface contactCardProps {
   icon: React.ReactNode
   Header: string
@@ -97,17 +98,16 @@ export default function HomePage() {
     <>
       <div className="bgImageContainer ubuntu-regular">
         <div className='overlayText container'>
-          <div className="w-50">
-            <Reveal direction={'top'} width='Full'>
-              <h1 style={{ fontSize: '6vw' }}>Find your car Battery</h1>
-            </Reveal>
-          </div>
+                <Reveal direction={'top'} width='Full'>
+                  <h1 className='mt-5 w-100 display-2 display-md-3 display-sm-2 text-bold'>Find your car Battery</h1>
+                </Reveal>
+
           <Reveal direction={'top'} width='Full'>
-            <p>Lorem ipsum dolom voluptate quod a alias dolorum, nobis architecto excepturi aliquid</p>
+            <p className='BorderedText '>Powering your journey with premium car batteries and exceptional service.</p>
           </Reveal>
           <Reveal direction={'right'} width='Full'>
             <div className="wrapper">
-              <a className='wrapperAnchor'><span><i className="fa-solid fa-cart-shopping"></i> SHOP NOW!</span></a>
+              <a href='/products' className='wrapperAnchor'><span><i className="fa-solid fa-cart-shopping"></i> SHOP NOW!</span></a>
             </div>
           </Reveal>
         </div>
@@ -118,8 +118,8 @@ export default function HomePage() {
           <div className="row align-items-center">
             <div className="col-md-7 text-start">
               <Reveal direction={'right'} width='Full'>
-                <h1 className='text-bold'>Reliable Car Batteries for sale at Battery-Store</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eos nesciunt distinctio assumenda temporibus explicabo ea laboriosam quibusdam doloribus sunt cum dignissimos itaque, enim, animi doloremque in architecto! At nobis magni quasi voluptatum culpa, delectus iusto distinctio cum possimus fuga nam itaque sint facilis soluta! Expedita sed omnis facilis magnam.</p>
+                <Typography variant='h4' className='text-bold mb-2'>Reliable Car Batteries for sale at Battery-Store</Typography>
+                <Typography className=' mb-2'>Welcome to El-Amir Company, your go-to source for a wide selection of car batteries delivered swiftly, all at unbeatable prices. Our primary focus is on customer satisfaction and fostering trust within our community.</Typography>
               </Reveal>
             </div>
             <div className="col-md-5">
@@ -133,9 +133,9 @@ export default function HomePage() {
         <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start ubuntu-regular`}>
           <Reveal direction={'top'} width='full'>
             <div className='container py-5'>
-              <h2 className='py-2'>About us</h2>
-              <p className='py-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid perspiciatis tempore praesentium quod doloremque ducimus dignissimos ut dolorem cumque, fuga, deleniti accusantium! Architecto assumenda, aliquid quam, maiores error recusandae similique deleniti tempore quae saepe adipisci eos excepturi sapiente dicta nostrum.</p>
-              <p className='m-0 p-0'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, eligendi quisquam. Nam, soluta. Voluptate ea possimus, illo sed fuga ex omnis eius delectus doloremque mollitia itaque qui. Exercitationem, temporibus at nesciunt repudiandae culpa excepturi eius pariatur necessitatibus similique perspiciatis error rem. Excepturi a nesciunt qui non magni! Aliquam, obcaecati sapiente?</p>
+              <Typography variant='h4' className='py-2 text-bold-600'>About us</Typography>
+              <Typography variant='subtitle1' className='py-2'>El-Amir Company specializes in providing top-notch car batteries to ensure that your vehicles remain powered up and ready to go.</Typography>
+              <Typography variant='subtitle1' className='m-0 p-0'> We understand the critical role that reliable batteries play in keeping your automobiles running smoothly, which is why we are dedicated to offering a diverse range of products to meet your specific needs.</Typography>
             </div>
           </Reveal>
 
@@ -165,10 +165,10 @@ export default function HomePage() {
             <div className="col-md-5 disapear-md">
               <Reveal direction={'right'} width='Full'>
                 <div className="w-100 h-100 d-flex flex-column justify-content-between">
-                  <ContactCard href='tel:+1234567890' Header='Phone Number' paragraph='+20 123456456' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                  <ContactCard href='https://wa.me/12345678901' Header="What'sapp" paragraph='+20 123456456' icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                  <ContactCard href='mailto:battery@gmail.com' Header='Email' paragraph='battery@gmail.com' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                  <ContactCard href='https://maps.google.com/maps?q=mena+palace' Header='Location' paragraph='32rd Haram zagloul' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  <ContactCard href='tel:+201032092971' Header='Phone Number' paragraph='+201032092971' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  <ContactCard href='https://wa.me/+201032092971' Header="What'sapp" paragraph='+201032092971' icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  <ContactCard href='mailto:elamircompany715@gmail.com' Header='Email' paragraph='elamircompany715@gmail.com' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  <ContactCard href='https://maps.google.com/maps?q=mena+palace' Header='Location' paragraph='Ring Rd, القومیة، Al Warak, Giza Governorate 3824530' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                 </div>
               </Reveal>
             </div>
@@ -177,9 +177,9 @@ export default function HomePage() {
                 <Paper className="alert text-start pt-1 pb-0 px-0 my-2 row justify-content-around" sx={{ backgroundColor: 'grey-900' }}>
                   <div className="pointer w-100 col-4 d-flex justify-content-around align-items-center">
 
-                    <IconnedLink href='tel:+1234567890' Header='Phone Number' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                    <IconnedLink href='https://wa.me/12345678901' Header="What'sapp" icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                    <IconnedLink href='mailto:battery@gmail.com' Header='Email' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                    <IconnedLink href='tel:+201032092971' Header='Phone Number' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                    <IconnedLink href='https://wa.me/+201032092971' Header="What'sapp" icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                    <IconnedLink href='mailto:elamircompany715@gmail.com' Header='Email' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     <IconnedLink href='https://maps.google.com/maps?q=mena+palace' Header='Location' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     {/* <div className="pointer w-100 col-4 d-flex justify-content-center align-items-center">
                     <Tooltip className='' followCursor title={"phone"}>
@@ -237,7 +237,8 @@ export default function HomePage() {
               <h2>Find us on Google Maps</h2>
               <p className='text-secondary'>Easily find our location by searching for us on Google Maps.</p>
               <div className="w-75">
-                <Map />
+                {/* <Map /> */}
+                <GoogleMap />
               </div>
             </div>
 

@@ -177,7 +177,10 @@
 }
 
 .text-bold {
-  font-weight: 900;
+  font-weight: 900 !important;
+}
+.text-bold-600{
+  font-weight: 600 !important;
 }
 
 .pyramdis {
@@ -339,4 +342,12 @@
   .show-md {
     display: block;
   }
+}
+
+.BorderedText{
+  text-shadow: 
+      -0.5px -0.5px 19px #000,  
+      0.5px -0.5px 19px #000,
+      -0.5px 0.5px 19px #000,
+      0.5px 0.5px 19px #000;
 }
