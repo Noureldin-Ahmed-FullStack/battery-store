@@ -179,7 +179,7 @@ export default function HomePage() {
                   <div className="pointer w-100 col-4 d-flex justify-content-around align-items-center">
 
                     <IconnedLink href='tel:+201032092971' Header='Phone Number' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                    <IconnedLink href='https://t.me/boost/ELAMIRCOMPANY' Header='Telegram' icon={<i className={`fa-brands fa-telegram squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                    <IconnedLink href='https://t.me/ELAMIRCOMPANY' Header='Telegram' icon={<i className={`fa-brands fa-telegram squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     <IconnedLink href='https://wa.me/+201032092971' Header="What'sapp" icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     <IconnedLink href='mailto:elamircompany715@gmail.com' Header='Email' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     {/* <IconnedLink href='https://maps.google.com/maps?q=mena+palace' Header='Location' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} /> */}

@@ -10,16 +10,21 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from './FireBaseSetup';
 import { addDoc, collection } from 'firebase/firestore';
 import { useMyContext } from './useMyContext';
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 
 export default function AddProduct() {
+    const [Category, setCategory] = useState('Chloride EFB');
     const [open, setOpen] = useState(false);
     const [files, setFiles] = useState<File[]>([]);
-   const {fetchProducts} = useMyContext()
+    const { fetchProducts } = useMyContext()
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFiles(Array.from(e.target.files));
         }
+    };
+    const handleCategoryChange = (event: SelectChangeEvent) => {
+        setCategory(event.target.value as string);
     };
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,16 +38,19 @@ export default function AddProduct() {
             return uploadTask.then(snapshot => getDownloadURL(snapshot.ref));
         });
         const downloadURLs = await Promise.all(promises);
-        
+        let category = formJson.category
+        if (Category == "Other") {
+            category = formJson.otherCategory
+        }
         const data = {
             name: formJson.name,
             brand: formJson.brand,
-            type: formJson.category,
+            type: category,
             description: formJson.description,
             price: formJson.price,
             quantity: formJson.quantity,
             discount: formJson.discount,
-            images: downloadURLs.length == 0? ['https://ssniper.sirv.com/Images/other%20projects/question.jpg'] : downloadURLs
+            images: downloadURLs.length == 0 ? ['https://ssniper.sirv.com/Images/other%20projects/question.jpg'] : downloadURLs
         }
         console.log(data);
         await addDoc(collection(db, "Products"), data);
@@ -118,18 +126,42 @@ export default function AddProduct() {
                                 />
                             </div>
                             <div className="col-6">
-                                <TextField
+                                <Select
                                     required
-                                    className='mt-2'
+                                    className="w-100 mt-2 overflow-hidden"
+                                    labelId="category"
                                     id="category"
+                                    variant='filled'
                                     name="category"
-                                    placeholder='Bosch'
-                                    label="category"
-                                    type="text"
-                                    fullWidth
-                                    variant="filled"
-                                />
+                                    value={Category}
+                                    label="Age"
+                                    onChange={handleCategoryChange}
+                                >
+                                    <MenuItem value={'Chloride EFB'}>Chloride EFB</MenuItem>
+                                    <MenuItem value={'Chloride Platinum'}>Chloride Platinum</MenuItem>
+                                    <MenuItem value={'Chloride Gold'}>Chloride Gold</MenuItem>
+                                    <MenuItem value={'Chloride Extra Power'}>Chloride Extra Power</MenuItem>
+                                    <MenuItem value={'Chloride Lithium'}>Chloride Lithium</MenuItem>
+                                    <MenuItem value={'ACDelco'}>ACDelco</MenuItem>
+                                    <MenuItem value={'Bosch'}>Bosch</MenuItem>
+                                    <MenuItem value={'Other'}>Other</MenuItem>
+                                </Select>
                             </div>
+                            {Category == 'Other' ? (
+                                <div className="col-6">
+                                    <TextField
+                                        required
+                                        className='mt-2'
+                                        id="otherCategory"
+                                        name="otherCategory"
+                                        placeholder='5'
+                                        label="Other Category"
+                                        type="text"
+                                        fullWidth
+                                        variant="filled"
+                                    />
+                                </div>
+                            ) : (<></>)}
                             <div className="col-6">
                                 <TextField
                                     required
@@ -158,7 +190,7 @@ export default function AddProduct() {
                                     variant="filled"
                                 />
                             </div>
-                            <div className="col-6">
+                            <div className={`${Category == 'Other' ? 'col-12' : 'col-6'}`}>
                                 <TextField
                                     required
                                     className='mt-2'
@@ -167,7 +199,7 @@ export default function AddProduct() {
                                     placeholder='30'
                                     label="discount"
                                     type="number"
-                                    inputProps={{ min: 0 ,max: 100}}
+                                    inputProps={{ min: 0, max: 100 }}
                                     fullWidth
                                     variant="filled"
                                 />
