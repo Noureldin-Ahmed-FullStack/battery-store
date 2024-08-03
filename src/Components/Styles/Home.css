@@ -351,3 +351,6 @@
       -0.5px 0.5px 19px #000,
       0.5px 0.5px 19px #000;
 }
+.smallLogo{
+  width: 150px !important;
+}

@@ -20,7 +20,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
 import { useMyContext } from './useMyContext';
-const pages = ['products', 'about'];
 interface prop {
     ToggleTheme: () => void,
     Theme: PaletteMode | undefined,
@@ -51,15 +50,15 @@ export default function Navbar(props: prop) {
         <AppBar sx={{ backgroundColor: isHome ? 'transparent' : '', backgroundImage: (!isHome && Theme == 'light') ? "linear-gradient(-90deg,#905689, #5e50ad)" : "" }} className={isHome ? "blured" : "LightThemeNav"} position={isHome ? 'absolute' : 'static'}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
+                    <ElectricCarIcon fontSize='large' className='outlined-text' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <Box
                         className="noLink outlined-text"
                         component="a"
                         href="/"
                         sx={{
                             mr: 2,
+                            ml: 2,
+                            width: '15%',
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
@@ -68,10 +67,10 @@ export default function Navbar(props: prop) {
                             textDecoration: 'none',
                         }}
                     >
-                        El Amir
-                    </Typography>
+                        <img className='w-100' src="https://ssniper.sirv.com/Images/other%20projects/logo.png" alt="Logo" />
+                    </Box>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -101,14 +100,12 @@ export default function Navbar(props: prop) {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page}
+                                <MenuItem
                                     component={Link}
                                     className='noLink'
-                                    to={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    to={'products'} onClick={handleCloseNavMenu}>
+                                    <Typography textAlign="center">{'Products'}</Typography>
                                 </MenuItem>
-                            ))}
 
                             {userDbData?.role == 'admin' && <MenuItem
                                 component={Link}
@@ -121,15 +118,14 @@ export default function Navbar(props: prop) {
                             </MenuItem>
                         </Menu>
                     </Box>
-                    <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        className="noLink outlined-text"
+                    <Box
+                        className="noLink align-items-center justify-content-center outlined-text"
                         component="a"
-                        href="#app-bar-with-responsive-menu"
+                        href="/"
                         sx={{
                             mr: 2,
+                            ml: 2,
+                            width: '100px',
                             display: { xs: 'flex', md: 'none' },
                             flexGrow: 1,
                             fontFamily: 'monospace',
@@ -139,21 +135,21 @@ export default function Navbar(props: prop) {
                             textDecoration: 'none',
                         }}
                     >
-                        El Amir
-                    </Typography>
+                        <ElectricCarIcon className='outlined-text' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+
+                        <img className='w-100 smallLogo' src="https://ssniper.sirv.com/Images/other%20projects/logo.png" alt="Logo" />
+                    </Box>
+
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
                             <Button
-                                key={page}
                                 component={Link}
                                 className='noLink outlined-text'
-                                to={page}
+                                to={'products'}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {'products'}
                             </Button>
-                        ))}
                         {userDbData?.role == 'admin' && <Button
                             component={Link}
                             className='noLink outlined-text'

@@ -14,7 +14,7 @@ import { db } from './FireBaseSetup';
 import { ReactElement } from 'react';
 import { Messages } from './types';
 import { toast } from 'react-toastify';
-import GoogleMap from './GoogleMap';
+// import GoogleMap from './GoogleMap';
 interface contactCardProps {
   icon: React.ReactNode
   Header: string
@@ -132,7 +132,7 @@ export default function HomePage() {
       <FancyDiv Theme={Theme}>
         <div className={`${Theme == 'light' ? 'myLight' : 'myDark'} text-start ubuntu-regular`}>
           <Reveal direction={'top'} width='full'>
-            <div className='container py-5'>
+            <div id='About' className='container py-5'>
               <Typography variant='h4' className='py-2 text-bold-600'>About us</Typography>
               <Typography variant='subtitle1' className='py-2'>El-Amir Company specializes in providing top-notch car batteries to ensure that your vehicles remain powered up and ready to go.</Typography>
               <Typography variant='subtitle1' className='m-0 p-0'> We understand the critical role that reliable batteries play in keeping your automobiles running smoothly, which is why we are dedicated to offering a diverse range of products to meet your specific needs.</Typography>
@@ -166,9 +166,10 @@ export default function HomePage() {
               <Reveal direction={'right'} width='Full'>
                 <div className="w-100 h-100 d-flex flex-column justify-content-between">
                   <ContactCard href='tel:+201032092971' Header='Phone Number' paragraph='+201032092971' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  <ContactCard href='https://t.me/boost/ELAMIRCOMPANY' Header='Telegram' paragraph='+201093828018' icon={<i className={`fa-brands fa-telegram squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                   <ContactCard href='https://wa.me/+201032092971' Header="What'sapp" paragraph='+201032092971' icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                   <ContactCard href='mailto:elamircompany715@gmail.com' Header='Email' paragraph='elamircompany715@gmail.com' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                  <ContactCard href='https://maps.google.com/maps?q=mena+palace' Header='Location' paragraph='Ring Rd, القومیة، Al Warak, Giza Governorate 3824530' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                  {/* <ContactCard href='https://maps.google.com/maps?q=mena+palace' Header='Location' paragraph='Ring Rd, القومیة، Al Warak, Giza Governorate 3824530' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} /> */}
                 </div>
               </Reveal>
             </div>
@@ -178,16 +179,11 @@ export default function HomePage() {
                   <div className="pointer w-100 col-4 d-flex justify-content-around align-items-center">
 
                     <IconnedLink href='tel:+201032092971' Header='Phone Number' icon={<i className={`fa-solid fa-phone squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
+                    <IconnedLink href='https://t.me/boost/ELAMIRCOMPANY' Header='Telegram' icon={<i className={`fa-brands fa-telegram squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     <IconnedLink href='https://wa.me/+201032092971' Header="What'sapp" icon={<i className={`fa-brands fa-whatsapp squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
                     <IconnedLink href='mailto:elamircompany715@gmail.com' Header='Email' icon={<i className={`fa-solid fa-envelope squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                    <IconnedLink href='https://maps.google.com/maps?q=mena+palace' Header='Location' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} />
-                    {/* <div className="pointer w-100 col-4 d-flex justify-content-center align-items-center">
-                    <Tooltip className='' followCursor title={"phone"}>
-                      <a href="">
-                        <i className={`fa-solid fa-phone squareAspectRatio ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>
-                      </a>
-                    </Tooltip>
-                  </div> */}
+                    {/* <IconnedLink href='https://maps.google.com/maps?q=mena+palace' Header='Location' icon={<i className={`fa-solid fa-map-location-dot squareAspectRatio heart ContactIcon ${Theme == 'dark' ? 'ContactIcon-dark' : 'ContactIcon-light'}`}></i>} /> */}
+                  
                   </div>
                 </Paper>
               </div>
@@ -230,21 +226,20 @@ export default function HomePage() {
         </div>
 
       </div>
-      <section className=''>
+      {/* <section className=''>
         <Reveal direction={'top'} width='Full'>
           <Paper className="alert py-4 text-center my-1 w-100 text-decoration-none pointer noLink" sx={{ backgroundColor: 'grey-900' }}>
             <div className="d-flex flex-column align-items-center">
               <h2>Find us on Google Maps</h2>
               <p className='text-secondary'>Easily find our location by searching for us on Google Maps.</p>
               <div className="w-75">
-                {/* <Map /> */}
                 <GoogleMap />
               </div>
             </div>
 
           </Paper>
         </Reveal>
-      </section>
+      </section> */}
     </>
 
   )

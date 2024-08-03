@@ -175,7 +175,7 @@ export default function EditProduct(props: props) {
                                     placeholder='7250'
                                     label="price"
                                     type="number"
-                                    inputProps={{ min: 0, max: 25000 }}
+                                    inputProps={{ min: 0 }}
                                     fullWidth
                                     variant="filled"
                                 />
