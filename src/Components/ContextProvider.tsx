@@ -15,6 +15,7 @@ interface MyContextProps {
   Products: Products[] | [];
   setProducts: React.Dispatch<React.SetStateAction<Products[] | []>>;
   fetchProducts: () => Promise<void>;
+  UniqueCatergories: string[]
   Theme: PaletteMode;
   setTheme: React.Dispatch<React.SetStateAction<PaletteMode>>;
   ToggleTheme: () => void
@@ -32,6 +33,7 @@ export default function MyContextProvider(props: props) {
     return storedProducts ? JSON.parse(storedProducts) : [];
   };
   const [userDbData, setUserDbData] = useState<UserDbData | null>(null);
+  const [UniqueCatergories, setUniqueCatergories] = useState<string[]>([]);
   const [Products, setProducts] = useState<Products[]>((getInitialProducts));
   const { isLoaded, isSignedIn, user } = useUser();
   const getInitialTheme = (): PaletteMode => {
@@ -92,7 +94,16 @@ export default function MyContextProvider(props: props) {
   const fetchProducts = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "Products"));
+      const categoriesSet = new Set<string>();
       const itemsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      querySnapshot.forEach((doc) => {
+        const product = doc.data();
+        if (product.type) {
+          categoriesSet.add(product.type);
+        }
+      });
+      console.log(Array.from(categoriesSet));
+      setUniqueCatergories(Array.from(categoriesSet))
       setProducts(itemsList as Products[])
       sessionStorage.setItem('productsData', JSON.stringify(itemsList))
       console.log({ Fetched: itemsList });
@@ -140,7 +151,7 @@ export default function MyContextProvider(props: props) {
     setProducts,
     fetchProducts,
     Theme,
-
+    UniqueCatergories,
     setTheme,
     ToggleTheme,
   };

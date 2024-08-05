@@ -13,7 +13,7 @@ import AddProduct from "./AddProduct";
 export default function Products() {
   const [Category, setCategory] = useState('Choose Category');
   const [Sort, setSort] = useState('asc');
-  const { Products, userDbData } = useMyContext();
+  const { Products, userDbData ,UniqueCatergories } = useMyContext();
   const [FilteredProducts, setFilteredProducts] = useState(Products);
   const [onSaleCheck, setOnSaleCheck] = useState(false);
   const handleSaleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,14 +73,10 @@ export default function Products() {
               label="Age"
               onChange={handleCategoryChange}
             >
-              <MenuItem value={'Choose Category'}>-- Choose Category --</MenuItem>
-              <MenuItem value={'Chloride EFB'}>Chloride EFB</MenuItem>
-              <MenuItem value={'Chloride Platinum'}>Chloride Platinum</MenuItem>
-              <MenuItem value={'Chloride Gold'}>Chloride Gold</MenuItem>
-              <MenuItem value={'Chloride Extra Power'}>Chloride Extra Power</MenuItem>
-              <MenuItem value={'Chloride Lithium'}>Chloride Lithium</MenuItem>
-              <MenuItem value={'ACDelco'}>ACDelco</MenuItem>
-              <MenuItem value={'Bosch'}>Bosch</MenuItem>
+               <MenuItem value={'Choose Category'}>-- Choose Category --</MenuItem>
+              {UniqueCatergories?.map((category:string)=>(
+                <MenuItem key={category} value={category}>{category}</MenuItem>
+              ))}
             </Select>
           </div>
           <div className="row justify-content-between mb-2">
