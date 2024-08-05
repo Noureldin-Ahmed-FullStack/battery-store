@@ -102,7 +102,7 @@ export default function MyContextProvider(props: props) {
           categoriesSet.add(product.type);
         }
       });
-      console.log(Array.from(categoriesSet));
+      
       setUniqueCatergories(Array.from(categoriesSet))
       setProducts(itemsList as Products[])
       sessionStorage.setItem('productsData', JSON.stringify(itemsList))
@@ -137,6 +137,15 @@ export default function MyContextProvider(props: props) {
       fetchProducts()
     } else {
       console.log({ local: JSON.parse(localProductsData) });
+      const data:Products[] = JSON.parse(localProductsData)
+      const categoriesSet = new Set<string>();
+      data.forEach(product => {
+        if (product.type) {
+          categoriesSet.add(product.type);
+        }
+      });
+      setUniqueCatergories(Array.from(categoriesSet))
+      
       setProducts(JSON.parse(localProductsData) as Products[])
     }
   }, [user])
