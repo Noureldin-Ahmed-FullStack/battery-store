@@ -67,7 +67,7 @@ export default function ProductDetails() {
                         </Grid>
                         <Grid item xs={12} sm={8}>
                             <div className='text-start h-100 position-relative'>
-                                <h1>{item.type + " - " + item.name}</h1>
+                                <h1><span className='price text-bold-600'>{item.type} </span>{ " - " + item.name}</h1>
                                 {item.discount ? (
                                     <div className="d-flex align-items-end">
                                         <h4 className='mb-0 price exo-2-bold'>{discountedPrice} EGP</h4> <p className='mb-0 ms-3 text-secondary text-decoration-line-through'>{item.price} EGP</p>

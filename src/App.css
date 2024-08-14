@@ -57,10 +57,12 @@
 .pointer{
   cursor: pointer;
 }
-.truncate-text{
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflowing content */
-  text-overflow: ellipsis; /* Add ellipsis for truncation */
+.truncate-text {
+  display: -webkit-box; /* Enables a flexible box layout */
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical; /* Sets the box's orientation to vertical */
+  overflow: hidden; /* Hides overflowing content */
+  text-overflow: ellipsis; /* Adds ellipsis for truncation */
 }
 .noLink:hover{
   color: inherit !important;

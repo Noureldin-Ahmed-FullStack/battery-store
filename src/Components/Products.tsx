@@ -6,6 +6,7 @@ import { Card, CardActions, CardContent, CardMedia, Checkbox, FormControlLabel, 
 import { useMyContext } from './useMyContext';
 import CardActionArea from '@mui/material/CardActionArea';
 import { useNavigate } from "react-router-dom";
+import SellIcon from '@mui/icons-material/Sell';
 import { useEffect, useState } from "react";
 import AddProduct from "./AddProduct";
 
@@ -101,8 +102,8 @@ export default function Products() {
                 label="Age"
                 onChange={handleSortChange}
               >
-                <MenuItem value={'asc'}>Low to High</MenuItem>
-                <MenuItem value={'desc'}>High to Low</MenuItem>
+                <MenuItem value={'desc'}>Low to High</MenuItem>
+                <MenuItem value={'asc'}>High to Low</MenuItem>
               </Select>
             </div>
           </div>
@@ -120,16 +121,17 @@ export default function Products() {
                     title={product.name}
                   />
                   {product.discount ? (
-                    <div className='bg-danger text-light px-2 position-absolute top-10 rounded-L-0'>{product.discount}% off</div>
+                    // <div className='bg-danger text-light px-2 position-absolute top-10 rounded-L-0'>{product.discount}% off</div>
+                    <div className='bg-danger text-light px-2 py-1 position-absolute top-10 rounded-L-0'><SellIcon fontSize="small" className="me-2"/>SALE</div>
                   ) : (<></>)}
                   <CardContent className="text-start pb-0">
                     <Tooltip title={product.name} followCursor className="pointer">
-                      <h6 className="m-0 truncate-text">{product.type + " - " + product.name}</h6>
+                      <h6 className="m-0 truncate-text">{product.name}</h6>
                     </Tooltip>
                     <Typography variant="body2" color="text.secondary" className="m-0 truncate-text">
 
-                      <Tooltip title={product.description} followCursor className="pointer">
-                        <span className="m-0">{product.description}</span>
+                      <Tooltip title="Category" followCursor className="pointer">
+                        <span className="m-0">{product.type}</span>
                       </Tooltip>
                     </Typography>
                   </CardContent>
