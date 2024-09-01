@@ -142,11 +142,11 @@ export default function Messages() {
                                 id="panel1bh-header"
                             >
                                 <Typography component={'div'} className="d-flex justify-content-center" sx={{ width: '33%', flexShrink: 0, textTransform: 'capitalize' }}>
-                                    <div className="bg-secondary p-1 w-75 rounded-2 text-bold">
+                                    <div className="bg-warning p-1 w-75 rounded-2 text-bold">
                                         {item.name}
                                     </div>
                                 </Typography>
-                                <Typography className="w-100 d-flex justify-content-between align-items-center" sx={{ color: 'text.secondary' }}>{item.phone} </Typography>
+                                <Typography className="w-100 d-flex justify-content-between align-items-center" sx={{ color: 'text.warning' }}>{item.phone} </Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Typography component={'div'} sx={{ textAlign: 'start' }}>

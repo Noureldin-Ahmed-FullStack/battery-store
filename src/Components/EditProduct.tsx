@@ -20,7 +20,9 @@ interface props {
 export default function EditProduct(props: props) {
     const { productItem } = props
     const [open, setOpen] = useState(false);
-    const [Category, setCategory] = useState(productItem.type);
+    const categoriesInSystem = ['Chloride Platinum', 'Chloride Gold', 'Chloride Extra Power', 'Chloride Lithium', 'ACDelco', 'Bosch']
+    const [Category, setCategory] = useState(categoriesInSystem.includes(productItem.type)? productItem.type : 'Other');
+    const [OtherCategory, setOtherCategory] = useState(productItem.type);
     const [files, setFiles] = useState<File[]>([]);
     const { fetchProducts } = useMyContext()
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +59,7 @@ export default function EditProduct(props: props) {
             price: formJson.price,
             quantity: formJson.quantity,
             discount: formJson.discount,
-            images: downloadURLs.length == 0 ? ['https://ssniper.sirv.com/Images/other%20projects/question.jpg'] : downloadURLs
+            images: downloadURLs.length == 0 ? productItem.images : downloadURLs
         }
         console.log(data);
 
@@ -158,13 +160,9 @@ export default function EditProduct(props: props) {
                                     label="Age"
                                     onChange={handleCategoryChange}
                                 >
-                                    <MenuItem value={'Chloride EFB'}>Chloride EFB</MenuItem>
-                                    <MenuItem value={'Chloride Platinum'}>Chloride Platinum</MenuItem>
-                                    <MenuItem value={'Chloride Gold'}>Chloride Gold</MenuItem>
-                                    <MenuItem value={'Chloride Extra Power'}>Chloride Extra Power</MenuItem>
-                                    <MenuItem value={'Chloride Lithium'}>Chloride Lithium</MenuItem>
-                                    <MenuItem value={'ACDelco'}>ACDelco</MenuItem>
-                                    <MenuItem value={'Bosch'}>Bosch</MenuItem>
+                                    {categoriesInSystem.map((item => (
+                                        <MenuItem key={item} value={item}>{item}</MenuItem>
+                                    )))}
                                     <MenuItem value={'Other'}>Other</MenuItem>
                                 </Select>
                             </div>
@@ -175,8 +173,10 @@ export default function EditProduct(props: props) {
                                         className='mt-2'
                                         id="otherCategory"
                                         name="otherCategory"
-                                        placeholder='5'
+                                        placeholder='category'
                                         label="Other Category"
+                                        defaultValue={OtherCategory}
+                                        onChange={(e) => setOtherCategory(e.target.value)} 
                                         type="text"
                                         fullWidth
                                         variant="filled"

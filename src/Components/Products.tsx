@@ -120,7 +120,7 @@ export default function Products() {
                     image={product.images[0]}
                     title={product.name}
                   />
-                  {product.discount ? (
+                  {product.discount != 0 ? (
                     // <div className='bg-danger text-light px-2 position-absolute top-10 rounded-L-0'>{product.discount}% off</div>
                     <div className='bg-danger text-light px-2 py-1 position-absolute top-10 rounded-L-0'><SellIcon fontSize="small" className="me-2"/>SALE</div>
                   ) : (<></>)}

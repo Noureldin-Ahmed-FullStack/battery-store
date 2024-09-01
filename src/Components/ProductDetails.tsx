@@ -58,7 +58,7 @@ export default function ProductDetails() {
                                 {item.images.map((image, index) => (
                                     <div key={index} className=' w-100'>
                                         <img src={image} className='productDetailsImage w-100 position-relative' alt="" />
-                                        {item.discount ? (
+                                        {item.discount !=0? (
                                             <div className='bg-danger text-light px-2 position-absolute top-10 rounded-L-0'>{item.discount}% off</div>
                                         ) : (<></>)}
                                     </div>
@@ -68,7 +68,7 @@ export default function ProductDetails() {
                         <Grid item xs={12} sm={8}>
                             <div className='text-start h-100 position-relative'>
                                 <h1><span className='price text-bold-600'>{item.type} </span>{ " - " + item.name}</h1>
-                                {item.discount ? (
+                                {item.discount !=0? (
                                     <div className="d-flex align-items-end">
                                         <h4 className='mb-0 price exo-2-bold'>{discountedPrice} EGP</h4> <p className='mb-0 ms-3 text-secondary text-decoration-line-through'>{item.price} EGP</p>
                                     </div>
